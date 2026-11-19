@@ -1,0 +1,1010 @@
+{
+  "capitulo": "Capítulo 3 – Datos",
+  "version": 1,
+  "ejercicios": [
+    {
+      "id": "c3-01a",
+      "modulo": "aprender",
+      "tipo": "queHace",
+      "titulo": "¿Qué hace queHace1?",
+      "tema": "iteracion",
+      "dificultad": 2,
+      "enunciado": "Indique qué hace el programa en cada situación.",
+      "programa": [
+        "programa queHace1",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    Pos(6,1)",
+        "    mientras ((HayFlorEnLaEsquina) & (PosCa < 100))",
+        "      mover",
+        "      tomarFlor",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "preguntas": [
+        "posicionFinal",
+        "informa",
+        "error"
+      ],
+      "escenarios": [
+        {
+          "nombre": "todas las esquinas de la avenida 6 tienen 1 flor",
+          "aleatorio": {
+            "zona": [
+              6,
+              1,
+              6,
+              100
+            ],
+            "flores": [
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "nombre": "todas las esquinas de la avenida 6 tienen 2 o más flores",
+          "aleatorio": {
+            "zona": [
+              6,
+              1,
+              6,
+              100
+            ],
+            "flores": [
+              2,
+              5
+            ]
+          }
+        },
+        {
+          "nombre": "solo (6,20) tiene flor",
+          "flores": [
+            [
+              6,
+              20,
+              1
+            ]
+          ]
+        },
+        {
+          "nombre": "ninguna esquina de la avenida 6 tiene flor"
+        }
+      ],
+      "notas": "El material dice 'al menos 1 flor'. Separé el escenario en 1 flor y 2 o más porque el resultado cambia: con una sola flor por esquina el robot se detiene en (6,2). Las respuestas no se escriben a mano: el grader las calcula ejecutando el programa."
+    },
+    {
+      "id": "c3-01b",
+      "modulo": "aprender",
+      "tipo": "queHace",
+      "titulo": "¿Qué hace queHace2?",
+      "tema": "variables",
+      "dificultad": 2,
+      "enunciado": "Indique qué hace el programa en cada situación.",
+      "programa": [
+        "programa queHace2",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    nro: numero",
+        "  comenzar",
+        "    nro := 0",
+        "    repetir 10",
+        "      si ~((HayFlorEnLaEsquina) | (HayPapelEnLaEsquina))",
+        "        mover",
+        "        nro := nro + 1",
+        "    Informar(nro)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "preguntas": [
+        "posicionFinal",
+        "informa",
+        "error"
+      ],
+      "escenarios": [
+        {
+          "nombre": "todas las esquinas de la avenida 1 tienen flor y papel",
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              1,
+              100
+            ],
+            "flores": [
+              1,
+              3
+            ],
+            "papeles": [
+              1,
+              3
+            ]
+          }
+        },
+        {
+          "nombre": "solo (6,20) tiene flor",
+          "flores": [
+            [
+              6,
+              20,
+              1
+            ]
+          ]
+        },
+        {
+          "nombre": "solo (6,20) tiene papel",
+          "papeles": [
+            [
+              6,
+              20,
+              1
+            ]
+          ]
+        },
+        {
+          "nombre": "ninguna esquina de la avenida 1 tiene flor ni papel"
+        }
+      ],
+      "notas": "Pregunta trampa del material: el robot recorre la avenida 1, así que lo que haya en (6,20) no cambia nada."
+    },
+    {
+      "id": "c3-02a",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Contar flores de la calle 44 juntándolas",
+      "tema": "variables",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Programe al robot para que informe la cantidad de flores que hay en la calle 44, recogiendo todas las flores.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              44,
+              100,
+              44
+            ],
+            "flores": [
+              0,
+              4
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa",
+          "ciudad"
+        ]
+      },
+      "solucion": [
+        "programa Cap3Ej2a",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    flores: numero",
+        "  comenzar",
+        "    flores := 0",
+        "    Pos(1,44)",
+        "    derecha",
+        "    repetir 100",
+        "      mientras HayFlorEnLaEsquina",
+        "        tomarFlor",
+        "        flores := flores + 1",
+        "      si PosAv < 100",
+        "        mover",
+        "    Informar(flores)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c3-02b",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Contar flores de la calle 44 sin modificarla",
+      "tema": "variables",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Programe al robot para que informe la cantidad de flores que hay en la calle 44 sin modificar el contenido de cada esquina.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              44,
+              100,
+              44
+            ],
+            "flores": [
+              0,
+              4
+            ],
+            "bolsa": {
+              "flores": [
+                0,
+                10
+              ]
+            }
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa",
+          "ciudad"
+        ]
+      },
+      "solucion": [
+        "programa Cap3Ej2b",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    flores: numero",
+        "    enEsquina: numero",
+        "  comenzar",
+        "    flores := 0",
+        "    Pos(1,44)",
+        "    derecha",
+        "    repetir 100",
+        "      enEsquina := 0",
+        "      mientras HayFlorEnLaEsquina",
+        "        tomarFlor",
+        "        enEsquina := enEsquina + 1",
+        "      flores := flores + enEsquina",
+        "      repetir enEsquina",
+        "        depositarFlor",
+        "      si PosAv < 100",
+        "        mover",
+        "    Informar(flores)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "El escenario arranca con flores en la bolsa a propósito: si la solución devuelve 'todas las flores de la bolsa' en lugar de las que juntó en la esquina, modifica la ciudad y no pasa."
+    },
+    {
+      "id": "c3-03",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Esquinas vacías de la ciudad",
+      "tema": "variables",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 15,
+      "enunciado": "Programe al robot para que informe la cantidad de esquinas vacías que hay en la ciudad.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "flores": [
+              0,
+              1
+            ],
+            "papeles": [
+              0,
+              1
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa"
+        ]
+      },
+      "solucion": [
+        "programa Cap3Ej3",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    vacias: numero",
+        "  comenzar",
+        "    vacias := 0",
+        "    repetir 100",
+        "      repetir 100",
+        "        si ~(HayFlorEnLaEsquina | HayPapelEnLaEsquina)",
+        "          vacias := vacias + 1",
+        "        si PosCa < 100",
+        "          mover",
+        "      si PosAv < 100",
+        "        Pos(PosAv + 1, 1)",
+        "    Informar(vacias)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c3-04",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "20 flores en la calle 7 (una por esquina, seguro existen)",
+      "tema": "iteracion",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Escriba un programa que le permita al robot caminar por la calle 7 hasta encontrar 20 flores. Hay como máximo una flor por esquina. Seguro existen 20 flores.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              7,
+              100,
+              7
+            ],
+            "flores": [
+              0,
+              1
+            ],
+            "restricciones": [
+              {
+                "zona": [
+                  1,
+                  7,
+                  100,
+                  7
+                ],
+                "totalFlores": {
+                  "min": 20
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "posicionFinal"
+        ]
+      },
+      "solucion": [
+        "programa Cap3Ej4",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    flores: numero",
+        "  comenzar",
+        "    flores := 0",
+        "    Pos(1,7)",
+        "    derecha",
+        "    mientras flores < 20",
+        "      si HayFlorEnLaEsquina",
+        "        flores := flores + 1",
+        "      si flores < 20",
+        "        mover",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "El robot debe quedar parado en la esquina de la flor número 20."
+    },
+    {
+      "id": "c3-05",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "20 flores en la calle 7 (pueden no existir)",
+      "tema": "iteracion",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Escriba un programa que le permita al robot caminar por la calle 7 hasta encontrar 20 flores. Hay como máximo una flor por esquina. Pueden no haber 20 flores.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              7,
+              100,
+              7
+            ],
+            "flores": [
+              0,
+              1
+            ],
+            "restricciones": [
+              {
+                "zona": [
+                  1,
+                  7,
+                  100,
+                  7
+                ],
+                "totalFlores": {
+                  "min": 20
+                }
+              }
+            ]
+          }
+        },
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              7,
+              100,
+              7
+            ],
+            "flores": [
+              0,
+              1
+            ],
+            "restricciones": [
+              {
+                "zona": [
+                  1,
+                  7,
+                  100,
+                  7
+                ],
+                "totalFlores": {
+                  "max": 19
+                }
+              }
+            ]
+          }
+        },
+        {
+          "nombre": "la flor 20 está en (100,7)",
+          "flores": [
+            [
+              81,
+              7,
+              1
+            ],
+            [
+              82,
+              7,
+              1
+            ],
+            [
+              83,
+              7,
+              1
+            ],
+            [
+              84,
+              7,
+              1
+            ],
+            [
+              85,
+              7,
+              1
+            ],
+            [
+              86,
+              7,
+              1
+            ],
+            [
+              87,
+              7,
+              1
+            ],
+            [
+              88,
+              7,
+              1
+            ],
+            [
+              89,
+              7,
+              1
+            ],
+            [
+              90,
+              7,
+              1
+            ],
+            [
+              91,
+              7,
+              1
+            ],
+            [
+              92,
+              7,
+              1
+            ],
+            [
+              93,
+              7,
+              1
+            ],
+            [
+              94,
+              7,
+              1
+            ],
+            [
+              95,
+              7,
+              1
+            ],
+            [
+              96,
+              7,
+              1
+            ],
+            [
+              97,
+              7,
+              1
+            ],
+            [
+              98,
+              7,
+              1
+            ],
+            [
+              99,
+              7,
+              1
+            ],
+            [
+              100,
+              7,
+              1
+            ]
+          ]
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "posicionFinal"
+        ]
+      },
+      "solucion": [
+        "programa Cap3Ej5",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    flores: numero",
+        "  comenzar",
+        "    flores := 0",
+        "    Pos(1,7)",
+        "    derecha",
+        "    mientras (flores < 20) & (PosAv < 100)",
+        "      si HayFlorEnLaEsquina",
+        "        flores := flores + 1",
+        "      si flores < 20",
+        "        mover",
+        "    si (flores < 20) & HayFlorEnLaEsquina",
+        "      flores := flores + 1",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "El tercer escenario prueba el error más común: olvidarse de revisar la última esquina."
+    },
+    {
+      "id": "c3-06",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "20 flores en la calle 7 (varias por esquina)",
+      "tema": "iteracion",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Escriba un programa que le permita al robot caminar por la calle 7 hasta encontrar 20 flores. Puede haber más de una flor por esquina. Seguro existen 20 flores.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              7,
+              100,
+              7
+            ],
+            "flores": [
+              0,
+              4
+            ],
+            "restricciones": [
+              {
+                "zona": [
+                  1,
+                  7,
+                  100,
+                  7
+                ],
+                "totalFlores": {
+                  "min": 20
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "posicionFinal"
+        ]
+      },
+      "solucion": [
+        "programa Cap3Ej6",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    flores: numero",
+        "  comenzar",
+        "    flores := 0",
+        "    Pos(1,7)",
+        "    derecha",
+        "    mientras flores < 20",
+        "      mientras HayFlorEnLaEsquina & (flores < 20)",
+        "        tomarFlor",
+        "        flores := flores + 1",
+        "      si flores < 20",
+        "        mover",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Para contar varias flores en una esquina hay que juntarlas, así que no se compara el estado de la ciudad."
+    },
+    {
+      "id": "c3-07",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Limpiar la calle 34 y contar esquinas con 6 papeles",
+      "tema": "variables",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "El robot debe limpiar de papeles la calle 34. Al terminar el recorrido debe informar cuántas esquinas tenían originalmente exactamente 6 papeles.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              34,
+              100,
+              34
+            ],
+            "papeles": [
+              0,
+              8
+            ]
+          }
+        },
+        {
+          "nombre": "ninguna con 6",
+          "papeles": [
+            [
+              3,
+              34,
+              5
+            ],
+            [
+              4,
+              34,
+              7
+            ]
+          ]
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa",
+          "ciudad"
+        ]
+      },
+      "solucion": [
+        "programa Cap3Ej7",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    seis: numero",
+        "    papeles: numero",
+        "  comenzar",
+        "    seis := 0",
+        "    Pos(1,34)",
+        "    derecha",
+        "    repetir 100",
+        "      papeles := 0",
+        "      mientras HayPapelEnLaEsquina",
+        "        tomarPapel",
+        "        papeles := papeles + 1",
+        "      si papeles = 6",
+        "        seis := seis + 1",
+        "      si PosAv < 100",
+        "        mover",
+        "    Informar(seis)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c3-08",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Al menos 10 papeles en la calle 2",
+      "tema": "iteracion",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Programe al robot para que recorra la calle 2 hasta encontrar al menos 10 papeles. Pueden no haber 10 papeles.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              2,
+              100,
+              2
+            ],
+            "papeles": [
+              0,
+              2
+            ]
+          }
+        },
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              2,
+              100,
+              2
+            ],
+            "papeles": [
+              0,
+              1
+            ],
+            "restricciones": [
+              {
+                "zona": [
+                  1,
+                  2,
+                  100,
+                  2
+                ],
+                "totalPapeles": {
+                  "max": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "posicionFinal"
+        ]
+      },
+      "solucion": [
+        "programa Cap3Ej8",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    papeles: numero",
+        "  comenzar",
+        "    papeles := 0",
+        "    Pos(1,2)",
+        "    derecha",
+        "    mientras (papeles < 10) & (PosAv < 100)",
+        "      mientras HayPapelEnLaEsquina",
+        "        tomarPapel",
+        "        papeles := papeles + 1",
+        "      si papeles < 10",
+        "        mover",
+        "    mientras HayPapelEnLaEsquina",
+        "      tomarPapel",
+        "      papeles := papeles + 1",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c3-09",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "10 papeles y 4 flores en la calle 2",
+      "tema": "iteracion",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Programe al robot para que recorra la calle 2 hasta encontrar 10 papeles y 4 flores. Seguro existen dichas cantidades.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              2,
+              100,
+              2
+            ],
+            "flores": [
+              0,
+              1
+            ],
+            "papeles": [
+              0,
+              2
+            ],
+            "restricciones": [
+              {
+                "zona": [
+                  1,
+                  2,
+                  100,
+                  2
+                ],
+                "totalFlores": {
+                  "min": 4
+                },
+                "totalPapeles": {
+                  "min": 10
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "posicionFinal"
+        ]
+      },
+      "solucion": [
+        "programa Cap3Ej9",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    papeles: numero",
+        "    flores: numero",
+        "  comenzar",
+        "    papeles := 0",
+        "    flores := 0",
+        "    Pos(1,2)",
+        "    derecha",
+        "    mientras (papeles < 10) | (flores < 4)",
+        "      mientras HayPapelEnLaEsquina",
+        "        tomarPapel",
+        "        papeles := papeles + 1",
+        "      mientras HayFlorEnLaEsquina",
+        "        tomarFlor",
+        "        flores := flores + 1",
+        "      si (papeles < 10) | (flores < 4)",
+        "        mover",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "La condición de corte es una disyunción: sigue mientras falte cualquiera de las dos cantidades."
+    },
+    {
+      "id": "c3-10",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Papeles por lado del perímetro",
+      "tema": "variables",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Programe al robot para que recorra el perímetro de la ciudad e informe la cantidad de papeles recogidos en cada lado.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "papeles": [
+              0,
+              2
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa"
+        ]
+      },
+      "solucion": [
+        "programa Cap3Ej10",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    papeles: numero",
+        "  comenzar",
+        "    repetir 4",
+        "      papeles := 0",
+        "      repetir 99",
+        "        mientras HayPapelEnLaEsquina",
+        "          tomarPapel",
+        "          papeles := papeles + 1",
+        "        mover",
+        "      Informar(papeles)",
+        "      derecha",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Criterio elegido: cada lado cuenta su vértice inicial y no el final, así cada esquina se cuenta una sola vez. Si en tu cursada lo corrigen distinto, cambiá la solución de referencia."
+    }
+  ]
+}

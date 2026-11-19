@@ -1,0 +1,714 @@
+{
+  "capitulo": "Capítulo 2 – Algoritmos y Lógica",
+  "version": 1,
+  "ejercicios": [
+    {
+      "id": "c2-01",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Flor en (2,84)",
+      "tema": "seleccion",
+      "dificultad": 1,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Escriba un programa que le permita al robot recoger una flor de la esquina (2,84) si existe.",
+      "escenarios": [
+        {
+          "nombre": "con flor",
+          "flores": [
+            [
+              2,
+              84,
+              3
+            ]
+          ]
+        },
+        {
+          "nombre": "sin flor"
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "posicionFinal",
+          "ciudad",
+          "bolsa"
+        ]
+      },
+      "solucion": [
+        "programa Cap2Ej1",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    Pos(2,84)",
+        "    si HayFlorEnLaEsquina",
+        "      tomarFlor",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c2-02",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Papeles en la calle 50",
+      "tema": "repeticion",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Escriba un programa que le permita al robot recorrer la calle 50 desde la avenida 65 hasta la avenida 23 depositando un papel en cada esquina. Debe avanzar hasta el final aunque durante el recorrido se quede sin papeles.",
+      "escenarios": [
+        {
+          "nombre": "papeles de sobra",
+          "bolsa": {
+            "papeles": 60
+          }
+        },
+        {
+          "nombre": "se queda sin papeles",
+          "bolsa": {
+            "papeles": 10
+          }
+        },
+        {
+          "nombre": "bolsa vacía"
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "posicionFinal",
+          "ciudad"
+        ]
+      },
+      "solucion": [
+        "programa Cap2Ej2",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    Pos(65,50)",
+        "    repetir 3",
+        "      derecha",
+        "    repetir 42",
+        "      si HayPapelEnLaBolsa",
+        "        depositarPapel",
+        "      mover",
+        "    si HayPapelEnLaBolsa",
+        "      depositarPapel",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Para mirar al oeste hay que girar 3 veces a la derecha. De la avenida 65 a la 23 hay 43 esquinas y 42 cuadras."
+    },
+    {
+      "id": "c2-03",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Cuadrado de lado 1",
+      "tema": "repeticion",
+      "dificultad": 1,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Escriba un programa que le permita al robot recorrer el perímetro del cuadrado determinado por (1,1) y (2,2).",
+      "escenarios": [
+        {
+          "nombre": "ciudad vacía"
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "recorrido",
+          "posicionFinal"
+        ]
+      },
+      "solucion": [
+        "programa Cap2Ej3",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    repetir 4",
+        "      mover",
+        "      derecha",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c2-04",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Cuadrado juntando papeles",
+      "tema": "seleccion",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Modificar el ejercicio 3 para que además recoja, de ser posible, un papel en cada esquina.",
+      "escenarios": [
+        {
+          "nombre": "algunas esquinas con papel",
+          "papeles": [
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              2,
+              2,
+              1
+            ]
+          ]
+        },
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              2,
+              2
+            ],
+            "papeles": [
+              0,
+              3
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "recorrido",
+          "ciudad",
+          "bolsa"
+        ]
+      },
+      "solucion": [
+        "programa Cap2Ej4",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    repetir 4",
+        "      si HayPapelEnLaEsquina",
+        "        tomarPapel",
+        "      mover",
+        "      derecha",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c2-05",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Vaciar la bolsa en (50,50)",
+      "tema": "iteracion",
+      "dificultad": 1,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Escriba un programa que le permita al robot dejar todas las flores que lleva en su bolsa en la esquina (50,50).",
+      "escenarios": [
+        {
+          "nombre": "lleva flores",
+          "bolsa": {
+            "flores": 7
+          }
+        },
+        {
+          "nombre": "bolsa vacía"
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "ciudad",
+          "bolsa"
+        ]
+      },
+      "solucion": [
+        "programa Cap2Ej5",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    Pos(50,50)",
+        "    mientras HayFlorEnLaBolsa",
+        "      depositarFlor",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c2-06",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Flores de la avenida 75 hacia el sur",
+      "tema": "iteracion",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Escriba un programa que le permita al robot recorrer la avenida 75 desde la calle 45 hasta la calle 15 recogiendo todas las flores que encuentre.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              75,
+              15,
+              75,
+              45
+            ],
+            "flores": [
+              0,
+              4
+            ]
+          }
+        },
+        {
+          "nombre": "flores en los extremos",
+          "flores": [
+            [
+              75,
+              45,
+              2
+            ],
+            [
+              75,
+              15,
+              3
+            ]
+          ]
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "posicionFinal",
+          "ciudad",
+          "bolsa"
+        ]
+      },
+      "solucion": [
+        "programa Cap2Ej6",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    Pos(75,45)",
+        "    derecha",
+        "    derecha",
+        "    repetir 30",
+        "      mientras HayFlorEnLaEsquina",
+        "        tomarFlor",
+        "      mover",
+        "    mientras HayFlorEnLaEsquina",
+        "      tomarFlor",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c2-07",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Una flor por esquina en la avenida 10",
+      "tema": "seleccion",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Escriba un programa que le permita al robot recorrer la avenida 10, depositando una flor en cada esquina. Si en algún momento del recorrido se queda sin flores en la bolsa, debe seguir caminando (sin depositar) hasta terminar la avenida.",
+      "escenarios": [
+        {
+          "nombre": "alcanzan",
+          "bolsa": {
+            "flores": 100
+          }
+        },
+        {
+          "nombre": "no alcanzan",
+          "bolsa": {
+            "flores": 30
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "posicionFinal",
+          "ciudad"
+        ]
+      },
+      "solucion": [
+        "programa Cap2Ej7",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    Pos(10,1)",
+        "    repetir 99",
+        "      si HayFlorEnLaBolsa",
+        "        depositarFlor",
+        "      mover",
+        "    si HayFlorEnLaBolsa",
+        "      depositarFlor",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c2-08",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Primera esquina sin papeles en la avenida 23",
+      "tema": "iteracion",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Escriba un programa que le permita al robot recorrer la avenida 23 buscando una esquina sin papeles que seguro existe. Al encontrarla debe depositar, en esa esquina, todos los papeles que lleva en su bolsa. Informar en qué calle dejó los papeles.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              23,
+              1,
+              23,
+              100
+            ],
+            "papeles": [
+              1,
+              3
+            ],
+            "restricciones": [
+              {
+                "zona": [
+                  23,
+                  1,
+                  23,
+                  100
+                ],
+                "esquinasSinPapel": {
+                  "min": 1
+                }
+              }
+            ],
+            "bolsa": {
+              "papeles": [
+                0,
+                10
+              ]
+            }
+          }
+        },
+        {
+          "nombre": "la primera ya está vacía",
+          "bolsa": {
+            "papeles": 4
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa",
+          "posicionFinal",
+          "ciudad"
+        ]
+      },
+      "solucion": [
+        "programa Cap2Ej8",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    Pos(23,1)",
+        "    mientras HayPapelEnLaEsquina",
+        "      mover",
+        "    mientras HayPapelEnLaBolsa",
+        "      depositarPapel",
+        "    Informar(PosCa)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c2-09",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Papeles en avenidas impares de la calle 17",
+      "tema": "repeticion",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Escriba un programa que le permita al robot recorrer la calle 17 depositando un papel en las avenidas impares. El recorrido termina cuando el robot llega a la esquina (100,17).",
+      "escenarios": [
+        {
+          "nombre": "papeles suficientes",
+          "bolsa": {
+            "papeles": 50
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "posicionFinal",
+          "ciudad"
+        ]
+      },
+      "solucion": [
+        "programa Cap2Ej9",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    Pos(1,17)",
+        "    derecha",
+        "    repetir 49",
+        "      depositarPapel",
+        "      mover",
+        "      mover",
+        "    depositarPapel",
+        "    mover",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Se asume que la bolsa tiene al menos 50 papeles; el enunciado no lo aclara. Si querés practicar la variante segura, agregá un escenario con menos papeles y usá si HayPapelEnLaBolsa."
+    },
+    {
+      "id": "c2-10",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Limpiar las 5 primeras avenidas",
+      "tema": "repeticion",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 15,
+      "enunciado": "Programe al robot para que recorra las 5 primeras avenidas juntando en cada esquina todas las flores y papeles.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              5,
+              100
+            ],
+            "flores": [
+              0,
+              3
+            ],
+            "papeles": [
+              0,
+              3
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "ciudad",
+          "bolsa"
+        ]
+      },
+      "solucion": [
+        "programa Cap2Ej10",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    repetir 5",
+        "      repetir 100",
+        "        mientras HayFlorEnLaEsquina",
+        "          tomarFlor",
+        "        mientras HayPapelEnLaEsquina",
+        "          tomarPapel",
+        "        si PosCa < 100",
+        "          mover",
+        "      si PosAv < 5",
+        "        Pos(PosAv + 1, 1)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c2-11",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Perímetro de la ciudad con un papel por vértice",
+      "tema": "iteracion",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 15,
+      "enunciado": "Programe al robot para que recorra el perímetro de la ciudad recogiendo todas las flores y papeles que encuentre y dejando en cada vértice solo un papel. Puede ocurrir que algún vértice quede vacío si el robot no tiene papeles en su bolsa para depositar.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "flores": [
+              0,
+              2
+            ],
+            "papeles": [
+              0,
+              2
+            ]
+          }
+        },
+        {
+          "nombre": "sin papeles en ningún lado"
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "posicionFinal",
+          "ciudad",
+          "bolsa"
+        ]
+      },
+      "solucion": [
+        "programa Cap2Ej11",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    repetir 4",
+        "      mientras HayFlorEnLaEsquina",
+        "        tomarFlor",
+        "      mientras HayPapelEnLaEsquina",
+        "        tomarPapel",
+        "      si HayPapelEnLaBolsa",
+        "        depositarPapel",
+        "      repetir 98",
+        "        mover",
+        "        mientras HayFlorEnLaEsquina",
+        "          tomarFlor",
+        "        mientras HayPapelEnLaEsquina",
+        "          tomarPapel",
+        "      mover",
+        "      derecha",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c2-12",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Un papel en cada esquina vacía",
+      "tema": "seleccion",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 15,
+      "enunciado": "Programe al robot para que recorra todas las calles depositando en cada esquina vacía un papel. En caso de no tener más papeles debe continuar el recorrido (sin depositar).",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "flores": [
+              0,
+              1
+            ],
+            "papeles": [
+              0,
+              1
+            ],
+            "bolsa": {
+              "papeles": [
+                0,
+                3000
+              ]
+            }
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "ciudad",
+          "bolsa"
+        ]
+      },
+      "solucion": [
+        "programa Cap2Ej12",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    derecha",
+        "    repetir 100",
+        "      repetir 100",
+        "        si (~HayFlorEnLaEsquina) & (~HayPapelEnLaEsquina) & HayPapelEnLaBolsa",
+        "          depositarPapel",
+        "        si PosAv < 100",
+        "          mover",
+        "      si PosCa < 100",
+        "        Pos(1, PosCa + 1)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    }
+  ]
+}
