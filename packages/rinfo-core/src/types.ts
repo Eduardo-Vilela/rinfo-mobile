@@ -11,7 +11,7 @@ export type ArchivoEjercicios = {
   ejercicios: Ejercicio[];
 };
 
-export type Ejercicio = EjercicioPrograma | EjercicioQueHace;
+export type Ejercicio = EjercicioPrograma | EjercicioQueHace | EjercicioVerdaderoFalso;
 
 type Base = {
   id: string; // único, ej. "c2-08"
@@ -49,6 +49,13 @@ export type EjercicioQueHace = Base & {
   preguntas: ('posicionFinal' | 'informa' | 'error')[];
 };
 
+// Afirmaciones sobre un programa: el alumno marca V o F y lee la justificación.
+export type EjercicioVerdaderoFalso = Omit<Base, 'escenarios'> & {
+  tipo: 'verdaderoFalso';
+  programa: string[];
+  afirmaciones: { texto: string; respuesta: boolean; justificacion: string }[];
+};
+
 export type Observable =
   | 'informa'        // secuencia de valores mostrados con Informar
   | 'posicionFinal'  // esquina donde termina el robot
@@ -67,6 +74,8 @@ export type Escenario = {
     zona: Zona;
     flores?: Rango;   // cantidad por esquina dentro de la zona
     papeles?: Rango;
+    // Probabilidad de que una esquina tenga flores / papeles (por defecto 1: todas).
+    densidad?: { flores?: number; papeles?: number };
     bolsa?: { flores?: Rango; papeles?: Rango };
     // El generador reintenta hasta cumplir todas (muestreo con rechazo).
     restricciones?: Restriccion[];
@@ -79,4 +88,5 @@ export type Restriccion = {
   totalPapeles?: { min?: number; max?: number };
   esquinasSinPapel?: { min?: number; max?: number };
   esquinasSinFlor?: { min?: number; max?: number };
+  esquinasVacias?: { min?: number };  // sin flores ni papeles
 };

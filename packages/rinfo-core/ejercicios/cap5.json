@@ -1,0 +1,2001 @@
+{
+  "capitulo": "Capítulo 5 – Programación Estructurada",
+  "version": 1,
+  "ejercicios": [
+    {
+      "id": "c5-01",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Proceso cuadrado de lado 2",
+      "tema": "procesos",
+      "dificultad": 1,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Escriba un proceso que le permita al robot realizar un cuadrado de lado 2 girando en la dirección de las agujas del reloj. Usalo para hacer el cuadrado desde (1,1).",
+      "escenarios": [
+        {
+          "nombre": "ciudad vacía"
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "recorrido"
+        ],
+        "usa": {
+          "procesosMin": 1
+        }
+      },
+      "solucion": [
+        "programa Cap5Ej1",
+        "procesos",
+        "  proceso Cuadrado",
+        "  comenzar",
+        "    repetir 4",
+        "      repetir 2",
+        "        mover",
+        "      derecha",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    Cuadrado",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c5-03",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Proceso rectángulo de 5 x 3",
+      "tema": "procesos",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Escriba un proceso que le permita al robot realizar un rectángulo de base 5 y altura 3 girando en la dirección de las agujas del reloj a partir de la posición (1,1).",
+      "escenarios": [
+        {
+          "nombre": "ciudad vacía"
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "recorrido"
+        ],
+        "usa": {
+          "procesosMin": 1
+        }
+      },
+      "solucion": [
+        "programa Cap5Ej3",
+        "procesos",
+        "  proceso Rectangulo",
+        "  comenzar",
+        "    repetir 2",
+        "      repetir 3",
+        "        mover",
+        "      derecha",
+        "      repetir 5",
+        "        mover",
+        "      derecha",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    Rectangulo",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Base = cuadras hacia el este (5), altura = cuadras hacia el norte (3). Arranca mirando al norte."
+    },
+    {
+      "id": "c5-06a",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Rectángulo de 5 x 3 antihorario",
+      "tema": "procesos",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Escriba un proceso que le permita al robot realizar un rectángulo de base 5 y altura 3 girando en la dirección contraria a la de las agujas del reloj, a partir de (1,1).",
+      "escenarios": [
+        {
+          "nombre": "ciudad vacía"
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "recorrido"
+        ],
+        "usa": {
+          "procesosMin": 1
+        }
+      },
+      "solucion": [
+        "programa Cap5Ej6a",
+        "procesos",
+        "  proceso Izquierda",
+        "  comenzar",
+        "    repetir 3",
+        "      derecha",
+        "  fin",
+        "  proceso RectanguloAntihorario",
+        "  comenzar",
+        "    derecha",
+        "    repetir 2",
+        "      repetir 5",
+        "        mover",
+        "      Izquierda",
+        "      repetir 3",
+        "        mover",
+        "      Izquierda",
+        "    Izquierda",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    RectanguloAntihorario",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "El robot no tiene 'izquierda': se gira 3 veces a la derecha. Desde (1,1) el sentido antihorario arranca hacia el este."
+    },
+    {
+      "id": "c5-07b",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "LimpiarEsquina en la avenida 89",
+      "tema": "procesos",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 15,
+      "enunciado": "(a) Escriba el proceso LimpiarEsquina que le permita al robot recoger todas las flores y todos los papeles de la esquina donde se encuentra parado. (b) Escriba un programa que le permita al robot recoger todas las flores y papeles de la avenida 89, utilizando ese proceso.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              89,
+              1,
+              89,
+              100
+            ],
+            "flores": [
+              0,
+              3
+            ],
+            "papeles": [
+              0,
+              3
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "ciudad",
+          "bolsa"
+        ],
+        "usa": {
+          "procesosMin": 1
+        }
+      },
+      "solucion": [
+        "programa Cap5Ej7b",
+        "procesos",
+        "  proceso LimpiarEsquina",
+        "  comenzar",
+        "    mientras HayFlorEnLaEsquina",
+        "      tomarFlor",
+        "    mientras HayPapelEnLaEsquina",
+        "      tomarPapel",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    Pos(89,1)",
+        "    repetir 99",
+        "      LimpiarEsquina",
+        "      mover",
+        "    LimpiarEsquina",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c5-07c",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Rectángulo antihorario limpiando",
+      "tema": "procesos",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 15,
+      "enunciado": "Modifique el proceso del rectángulo antihorario (6.a) para que el robot realice el rectángulo dejando a su paso todas las esquinas vacías. Debe utilizar el proceso LimpiarEsquina.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              6,
+              4
+            ],
+            "flores": [
+              0,
+              2
+            ],
+            "papeles": [
+              0,
+              2
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "ciudad",
+          "recorrido"
+        ],
+        "usa": {
+          "procesosMin": 2
+        }
+      },
+      "solucion": [
+        "programa Cap5Ej7c",
+        "procesos",
+        "  proceso LimpiarEsquina",
+        "  comenzar",
+        "    mientras HayFlorEnLaEsquina",
+        "      tomarFlor",
+        "    mientras HayPapelEnLaEsquina",
+        "      tomarPapel",
+        "  fin",
+        "  proceso Izquierda",
+        "  comenzar",
+        "    repetir 3",
+        "      derecha",
+        "  fin",
+        "  proceso RectanguloLimpiando",
+        "  comenzar",
+        "    derecha",
+        "    repetir 2",
+        "      repetir 5",
+        "        LimpiarEsquina",
+        "        mover",
+        "      Izquierda",
+        "      repetir 3",
+        "        LimpiarEsquina",
+        "        mover",
+        "      Izquierda",
+        "    Izquierda",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    RectanguloLimpiando",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c5-08",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Avenida y calle alternadas",
+      "tema": "procesos",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 20,
+      "enunciado": "Programe al robot para que recorra la ciudad de la siguiente manera: primero debe recorrer la avenida 1 juntando todas las flores que encuentre, luego debe recorrer la calle 1 juntando todos los papeles que encuentre. Luego recorre la avenida 2 y la calle 2 de la misma manera y así siguiendo. Implemente un módulo para recorrer la avenida y otro módulo para recorrer la calle.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "flores": [
+              0,
+              1
+            ],
+            "papeles": [
+              0,
+              1
+            ],
+            "densidad": {
+              "flores": 0.2,
+              "papeles": 0.2
+            }
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "ciudad",
+          "bolsa"
+        ],
+        "usa": {
+          "procesosMin": 2
+        }
+      },
+      "solucion": [
+        "programa Cap5Ej8",
+        "procesos",
+        "  proceso JuntarFloresAvenida",
+        "  comenzar",
+        "    repetir 99",
+        "      mientras HayFlorEnLaEsquina",
+        "        tomarFlor",
+        "      mover",
+        "    mientras HayFlorEnLaEsquina",
+        "      tomarFlor",
+        "  fin",
+        "  proceso JuntarPapelesCalle",
+        "  comenzar",
+        "    repetir 99",
+        "      mientras HayPapelEnLaEsquina",
+        "        tomarPapel",
+        "      mover",
+        "    mientras HayPapelEnLaEsquina",
+        "      tomarPapel",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    i: numero",
+        "  comenzar",
+        "    i := 1",
+        "    repetir 100",
+        "      Pos(i,1)",
+        "      JuntarFloresAvenida",
+        "      derecha",
+        "      Pos(1,i)",
+        "      JuntarPapelesCalle",
+        "      repetir 3",
+        "        derecha",
+        "      i := i + 1",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Sin parámetros todavía: el número de avenida y calle lo maneja el robot con una variable y Pos."
+    },
+    {
+      "id": "c5-09a",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Juntar 30 flores en una avenida (existen)",
+      "tema": "procesos",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 15,
+      "enunciado": "Implemente un proceso para que el robot recorra una avenida juntando flores y se detenga cuando haya juntado 30 flores (seguro existe dicha cantidad). Usalo en la avenida 1.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              1,
+              100
+            ],
+            "flores": [
+              0,
+              2
+            ],
+            "restricciones": [
+              {
+                "zona": [
+                  1,
+                  1,
+                  1,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "posicionFinal",
+          "bolsa"
+        ],
+        "usa": {
+          "procesosMin": 1
+        }
+      },
+      "solucion": [
+        "programa Cap5Ej9a",
+        "procesos",
+        "  proceso Juntar30",
+        "  variables",
+        "    cant: numero",
+        "  comenzar",
+        "    cant := 0",
+        "    mientras cant < 30",
+        "      mientras HayFlorEnLaEsquina & (cant < 30)",
+        "        tomarFlor",
+        "        cant := cant + 1",
+        "      si cant < 30",
+        "        mover",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    Juntar30",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c5-09b",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Juntar 30 flores en una avenida (pueden no existir)",
+      "tema": "procesos",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 15,
+      "enunciado": "Modifique el proceso anterior sabiendo que las 30 flores pueden no existir.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              1,
+              100
+            ],
+            "flores": [
+              0,
+              2
+            ],
+            "restricciones": [
+              {
+                "zona": [
+                  1,
+                  1,
+                  1,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              }
+            ]
+          }
+        },
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              1,
+              100
+            ],
+            "flores": [
+              0,
+              1
+            ],
+            "restricciones": [
+              {
+                "zona": [
+                  1,
+                  1,
+                  1,
+                  100
+                ],
+                "totalFlores": {
+                  "max": 25
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "posicionFinal",
+          "bolsa"
+        ],
+        "usa": {
+          "procesosMin": 1
+        }
+      },
+      "solucion": [
+        "programa Cap5Ej9b",
+        "procesos",
+        "  proceso Juntar30",
+        "  variables",
+        "    cant: numero",
+        "  comenzar",
+        "    cant := 0",
+        "    mientras (cant < 30) & (PosCa < 100)",
+        "      mientras HayFlorEnLaEsquina & (cant < 30)",
+        "        tomarFlor",
+        "        cant := cant + 1",
+        "      si cant < 30",
+        "        mover",
+        "    mientras HayFlorEnLaEsquina & (cant < 30)",
+        "      tomarFlor",
+        "      cant := cant + 1",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    Juntar30",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c5-09c",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "30 flores en cada avenida",
+      "tema": "procesos",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 20,
+      "enunciado": "Implemente un programa que recorra todas las avenidas de la ciudad, utilizando el proceso de 9.a (cada avenida seguro tiene al menos 30 flores).",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "flores": [
+              0,
+              1
+            ],
+            "restricciones": [
+              {
+                "zona": [
+                  1,
+                  1,
+                  1,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  2,
+                  1,
+                  2,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  3,
+                  1,
+                  3,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  4,
+                  1,
+                  4,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  5,
+                  1,
+                  5,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  6,
+                  1,
+                  6,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  7,
+                  1,
+                  7,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  8,
+                  1,
+                  8,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  9,
+                  1,
+                  9,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  10,
+                  1,
+                  10,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  11,
+                  1,
+                  11,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  12,
+                  1,
+                  12,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  13,
+                  1,
+                  13,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  14,
+                  1,
+                  14,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  15,
+                  1,
+                  15,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  16,
+                  1,
+                  16,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  17,
+                  1,
+                  17,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  18,
+                  1,
+                  18,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  19,
+                  1,
+                  19,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  20,
+                  1,
+                  20,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  21,
+                  1,
+                  21,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  22,
+                  1,
+                  22,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  23,
+                  1,
+                  23,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  24,
+                  1,
+                  24,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  25,
+                  1,
+                  25,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  26,
+                  1,
+                  26,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  27,
+                  1,
+                  27,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  28,
+                  1,
+                  28,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  29,
+                  1,
+                  29,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  30,
+                  1,
+                  30,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  31,
+                  1,
+                  31,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  32,
+                  1,
+                  32,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  33,
+                  1,
+                  33,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  34,
+                  1,
+                  34,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  35,
+                  1,
+                  35,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  36,
+                  1,
+                  36,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  37,
+                  1,
+                  37,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  38,
+                  1,
+                  38,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  39,
+                  1,
+                  39,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  40,
+                  1,
+                  40,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  41,
+                  1,
+                  41,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  42,
+                  1,
+                  42,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  43,
+                  1,
+                  43,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  44,
+                  1,
+                  44,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  45,
+                  1,
+                  45,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  46,
+                  1,
+                  46,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  47,
+                  1,
+                  47,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  48,
+                  1,
+                  48,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  49,
+                  1,
+                  49,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  50,
+                  1,
+                  50,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  51,
+                  1,
+                  51,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  52,
+                  1,
+                  52,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  53,
+                  1,
+                  53,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  54,
+                  1,
+                  54,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  55,
+                  1,
+                  55,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  56,
+                  1,
+                  56,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  57,
+                  1,
+                  57,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  58,
+                  1,
+                  58,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  59,
+                  1,
+                  59,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  60,
+                  1,
+                  60,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  61,
+                  1,
+                  61,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  62,
+                  1,
+                  62,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  63,
+                  1,
+                  63,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  64,
+                  1,
+                  64,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  65,
+                  1,
+                  65,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  66,
+                  1,
+                  66,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  67,
+                  1,
+                  67,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  68,
+                  1,
+                  68,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  69,
+                  1,
+                  69,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  70,
+                  1,
+                  70,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  71,
+                  1,
+                  71,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  72,
+                  1,
+                  72,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  73,
+                  1,
+                  73,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  74,
+                  1,
+                  74,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  75,
+                  1,
+                  75,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  76,
+                  1,
+                  76,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  77,
+                  1,
+                  77,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  78,
+                  1,
+                  78,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  79,
+                  1,
+                  79,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  80,
+                  1,
+                  80,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  81,
+                  1,
+                  81,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  82,
+                  1,
+                  82,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  83,
+                  1,
+                  83,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  84,
+                  1,
+                  84,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  85,
+                  1,
+                  85,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  86,
+                  1,
+                  86,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  87,
+                  1,
+                  87,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  88,
+                  1,
+                  88,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  89,
+                  1,
+                  89,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  90,
+                  1,
+                  90,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  91,
+                  1,
+                  91,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  92,
+                  1,
+                  92,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  93,
+                  1,
+                  93,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  94,
+                  1,
+                  94,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  95,
+                  1,
+                  95,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  96,
+                  1,
+                  96,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  97,
+                  1,
+                  97,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  98,
+                  1,
+                  98,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  99,
+                  1,
+                  99,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              },
+              {
+                "zona": [
+                  100,
+                  1,
+                  100,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 30
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "bolsa",
+          "ciudad"
+        ],
+        "usa": {
+          "procesosMin": 1
+        }
+      },
+      "solucion": [
+        "programa Cap5Ej9c",
+        "procesos",
+        "  proceso Juntar30",
+        "  variables",
+        "    cant: numero",
+        "  comenzar",
+        "    cant := 0",
+        "    mientras cant < 30",
+        "      mientras HayFlorEnLaEsquina & (cant < 30)",
+        "        tomarFlor",
+        "        cant := cant + 1",
+        "      si cant < 30",
+        "        mover",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    a: numero",
+        "  comenzar",
+        "    a := 1",
+        "    repetir 100",
+        "      Pos(a,1)",
+        "      Juntar30",
+        "      a := a + 1",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c5-10a",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Pasos hasta un papel (existe)",
+      "tema": "procesos",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 15,
+      "enunciado": "Implemente un proceso para que el robot recorra una calle y se detenga cuando encuentre un papel (seguro existe). El proceso debe informar la cantidad de pasos dados hasta encontrar el papel. Usalo en la calle 1.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              1
+            ],
+            "papeles": [
+              0,
+              1
+            ],
+            "densidad": {
+              "papeles": 0.1
+            },
+            "restricciones": [
+              {
+                "zona": [
+                  1,
+                  1,
+                  100,
+                  1
+                ],
+                "totalPapeles": {
+                  "min": 1
+                }
+              }
+            ]
+          }
+        },
+        {
+          "nombre": "papel en (1,1)",
+          "papeles": [
+            [
+              1,
+              1,
+              1
+            ]
+          ]
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa",
+          "posicionFinal"
+        ],
+        "usa": {
+          "procesosMin": 1
+        }
+      },
+      "solucion": [
+        "programa Cap5Ej10a",
+        "procesos",
+        "  proceso BuscarPapel",
+        "  variables",
+        "    pasos: numero",
+        "  comenzar",
+        "    pasos := 0",
+        "    mientras ~HayPapelEnLaEsquina",
+        "      mover",
+        "      pasos := pasos + 1",
+        "    Informar(pasos)",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    derecha",
+        "    BuscarPapel",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c5-10b",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Pasos hasta un papel (puede no existir)",
+      "tema": "procesos",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 15,
+      "enunciado": "Modifique el proceso anterior sabiendo que el papel puede no existir y en dicho caso debe informar 999.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              1
+            ],
+            "papeles": [
+              0,
+              1
+            ],
+            "densidad": {
+              "papeles": 0.05
+            }
+          }
+        },
+        {
+          "nombre": "sin papeles"
+        },
+        {
+          "nombre": "papel en (100,1)",
+          "papeles": [
+            [
+              100,
+              1,
+              1
+            ]
+          ]
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa"
+        ],
+        "usa": {
+          "procesosMin": 1
+        }
+      },
+      "solucion": [
+        "programa Cap5Ej10b",
+        "procesos",
+        "  proceso BuscarPapel",
+        "  variables",
+        "    pasos: numero",
+        "  comenzar",
+        "    pasos := 0",
+        "    mientras ~HayPapelEnLaEsquina & (PosAv < 100)",
+        "      mover",
+        "      pasos := pasos + 1",
+        "    si HayPapelEnLaEsquina",
+        "      Informar(pasos)",
+        "    sino",
+        "      Informar(999)",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    derecha",
+        "    BuscarPapel",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c5-10c",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Pasos hasta un papel en todas las calles",
+      "tema": "procesos",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 20,
+      "enunciado": "Implemente un programa que recorra todas las calles de la ciudad, utilizando el proceso de 10.b.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "papeles": [
+              0,
+              1
+            ],
+            "densidad": {
+              "papeles": 0.02
+            }
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa"
+        ],
+        "usa": {
+          "procesosMin": 1
+        }
+      },
+      "solucion": [
+        "programa Cap5Ej10c",
+        "procesos",
+        "  proceso BuscarPapel",
+        "  variables",
+        "    pasos: numero",
+        "  comenzar",
+        "    pasos := 0",
+        "    mientras ~HayPapelEnLaEsquina & (PosAv < 100)",
+        "      mover",
+        "      pasos := pasos + 1",
+        "    si HayPapelEnLaEsquina",
+        "      Informar(pasos)",
+        "    sino",
+        "      Informar(999)",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    c: numero",
+        "  comenzar",
+        "    c := 1",
+        "    derecha",
+        "    repetir 100",
+        "      Pos(1,c)",
+        "      BuscarPapel",
+        "      c := c + 1",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    }
+  ]
+}

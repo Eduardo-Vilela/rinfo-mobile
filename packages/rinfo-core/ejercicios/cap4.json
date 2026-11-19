@@ -1,0 +1,1055 @@
+{
+  "capitulo": "Capítulo 4 – Repaso",
+  "version": 1,
+  "ejercicios": [
+    {
+      "id": "c4-01a",
+      "modulo": "aprender",
+      "tipo": "queHace",
+      "titulo": "¿Qué hace queHace1? (cap. 4)",
+      "tema": "seleccion",
+      "dificultad": 1,
+      "enunciado": "Indique qué hace el programa en cada situación.",
+      "programa": [
+        "programa queHace1",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    Pos(4,3)",
+        "    si ((HayFlorEnLaEsquina) & ~(HayPapelEnLaEsquina))",
+        "      tomarFlor",
+        "      Informar(V)",
+        "    sino",
+        "      Informar(F)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "preguntas": [
+        "posicionFinal",
+        "informa",
+        "error"
+      ],
+      "escenarios": [
+        {
+          "nombre": "(4,3) tiene 2 flores y ningún papel",
+          "flores": [
+            [
+              4,
+              3,
+              2
+            ]
+          ]
+        },
+        {
+          "nombre": "(4,3) tiene 1 flor y 1 papel",
+          "flores": [
+            [
+              4,
+              3,
+              1
+            ]
+          ],
+          "papeles": [
+            [
+              4,
+              3,
+              1
+            ]
+          ]
+        },
+        {
+          "nombre": "(4,3) está vacía"
+        }
+      ]
+    },
+    {
+      "id": "c4-01b",
+      "modulo": "aprender",
+      "tipo": "queHace",
+      "titulo": "¿Qué hace queHace2? (cap. 4)",
+      "tema": "iteracion",
+      "dificultad": 2,
+      "enunciado": "Indique qué hace el programa en cada situación.",
+      "programa": [
+        "programa queHace2",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    Pos(6,1)",
+        "    mientras (HayFlorEnLaEsquina & (PosCa < 100))",
+        "      mover",
+        "      tomarFlor",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "preguntas": [
+        "posicionFinal",
+        "informa",
+        "error"
+      ],
+      "escenarios": [
+        {
+          "nombre": "toda la avenida 6 tiene 3 flores por esquina",
+          "aleatorio": {
+            "zona": [
+              6,
+              1,
+              6,
+              100
+            ],
+            "flores": [
+              3,
+              3
+            ]
+          }
+        },
+        {
+          "nombre": "(6,1) tiene flor y (6,2) no",
+          "flores": [
+            [
+              6,
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "nombre": "(6,1) a (6,5) tienen 1 flor",
+          "flores": [
+            [
+              6,
+              1,
+              1
+            ],
+            [
+              6,
+              2,
+              1
+            ],
+            [
+              6,
+              3,
+              1
+            ],
+            [
+              6,
+              4,
+              1
+            ],
+            [
+              6,
+              5,
+              1
+            ]
+          ]
+        }
+      ],
+      "notas": "Ojo con el orden: primero mueve y después toma, así que la flor que se toma es la de la esquina nueva."
+    },
+    {
+      "id": "c4-01c",
+      "modulo": "aprender",
+      "tipo": "queHace",
+      "titulo": "¿Qué hace queHace3?",
+      "tema": "iteracion",
+      "dificultad": 3,
+      "enunciado": "Indique qué hace el programa en cada situación.",
+      "programa": [
+        "programa queHace3",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    repetir 99",
+        "      mientras (HayFlorEnLaEsquina)",
+        "        tomarFlor",
+        "        mover",
+        "    mientras (HayFlorEnLaEsquina)",
+        "      tomarFlor",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "preguntas": [
+        "posicionFinal",
+        "informa",
+        "error"
+      ],
+      "escenarios": [
+        {
+          "nombre": "(1,1) está vacía"
+        },
+        {
+          "nombre": "(1,1) a (1,4) tienen 1 flor",
+          "flores": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              1,
+              3,
+              1
+            ],
+            [
+              1,
+              4,
+              1
+            ]
+          ]
+        },
+        {
+          "nombre": "toda la avenida 1 tiene 1 flor por esquina",
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              1,
+              100
+            ],
+            "flores": [
+              1,
+              1
+            ]
+          }
+        }
+      ],
+      "notas": "El mover está dentro del mientras: el robot solo avanza mientras haya flores. Si toda la avenida tiene flores, en (1,100) toma la flor e intenta salir de la ciudad."
+    },
+    {
+      "id": "c4-01d",
+      "modulo": "aprender",
+      "tipo": "queHace",
+      "titulo": "¿Qué hace queHace4? (cap. 4)",
+      "tema": "variables",
+      "dificultad": 1,
+      "enunciado": "Indique qué hace el programa en cada situación.",
+      "programa": [
+        "programa queHace4",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    nro: numero",
+        "  comenzar",
+        "    nro := 0",
+        "    si ~(HayFlorEnLaEsquina | HayPapelEnLaEsquina)",
+        "      mover",
+        "      nro := nro + 1",
+        "    Informar(nro)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "preguntas": [
+        "posicionFinal",
+        "informa",
+        "error"
+      ],
+      "escenarios": [
+        {
+          "nombre": "(1,1) está vacía"
+        },
+        {
+          "nombre": "(1,1) tiene un papel",
+          "papeles": [
+            [
+              1,
+              1,
+              1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c4-01e",
+      "modulo": "aprender",
+      "tipo": "queHace",
+      "titulo": "¿Qué hace queHace5?",
+      "tema": "variables",
+      "dificultad": 3,
+      "enunciado": "Indique qué hace el programa en cada situación.",
+      "programa": [
+        "programa queHace5",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    SinFlor: numero",
+        "  comenzar",
+        "    SinFlor := 0",
+        "    Pos(1,20)",
+        "    derecha",
+        "    mientras (HayFlorEnLaEsquina & (PosAv < 100))",
+        "      tomarFlor",
+        "      si ~(HayFlorEnLaEsquina)",
+        "        SinFlor := SinFlor + 1",
+        "      mover",
+        "    Informar(SinFlor)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "preguntas": [
+        "posicionFinal",
+        "informa",
+        "error"
+      ],
+      "escenarios": [
+        {
+          "nombre": "(1,20) a (5,20) tienen 1 flor cada una",
+          "flores": [
+            [
+              1,
+              20,
+              1
+            ],
+            [
+              2,
+              20,
+              1
+            ],
+            [
+              3,
+              20,
+              1
+            ],
+            [
+              4,
+              20,
+              1
+            ],
+            [
+              5,
+              20,
+              1
+            ]
+          ]
+        },
+        {
+          "nombre": "(1,20) tiene 3 flores",
+          "flores": [
+            [
+              1,
+              20,
+              3
+            ]
+          ]
+        },
+        {
+          "nombre": "la calle 20 está vacía"
+        }
+      ],
+      "notas": "SinFlor cuenta las esquinas que quedaron vacías de flores después de tomar una."
+    },
+    {
+      "id": "c4-01f",
+      "modulo": "aprender",
+      "tipo": "queHace",
+      "titulo": "¿Qué hace queHace6?",
+      "tema": "iteracion",
+      "dificultad": 2,
+      "enunciado": "Indique qué hace el programa en cada situación.",
+      "programa": [
+        "programa queHace6",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    cant: numero",
+        "  comenzar",
+        "    cant := 0",
+        "    mientras (HayFlorEnLaEsquina & HayPapelEnLaEsquina)",
+        "      tomarFlor",
+        "      tomarPapel",
+        "      cant := cant + 1",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "preguntas": [
+        "posicionFinal",
+        "informa",
+        "error"
+      ],
+      "escenarios": [
+        {
+          "nombre": "(1,1) tiene 3 flores y 5 papeles",
+          "flores": [
+            [
+              1,
+              1,
+              3
+            ]
+          ],
+          "papeles": [
+            [
+              1,
+              1,
+              5
+            ]
+          ]
+        },
+        {
+          "nombre": "(1,1) tiene 2 flores y ningún papel",
+          "flores": [
+            [
+              1,
+              1,
+              2
+            ]
+          ]
+        }
+      ],
+      "notas": "El robot nunca se mueve y no informa nada: cant se calcula pero no se usa."
+    },
+    {
+      "id": "c4-02",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Papeles en la calle 3 hasta quedarse sin",
+      "tema": "iteracion",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 15,
+      "enunciado": "Programar al robot para que recorra la calle 3 desde la avenida 5 hasta la avenida 20 depositando un papel en cada esquina. Si durante el recorrido se queda sin papeles para depositar, debe detenerse.",
+      "escenarios": [
+        {
+          "nombre": "alcanzan",
+          "bolsa": {
+            "papeles": 30
+          }
+        },
+        {
+          "nombre": "se queda sin papeles",
+          "bolsa": {
+            "papeles": 7
+          }
+        },
+        {
+          "nombre": "bolsa vacía"
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "ciudad"
+        ]
+      },
+      "solucion": [
+        "programa Cap4Ej2",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    Pos(5,3)",
+        "    derecha",
+        "    mientras HayPapelEnLaBolsa & (PosAv < 20)",
+        "      depositarPapel",
+        "      mover",
+        "    si HayPapelEnLaBolsa",
+        "      depositarPapel",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Se compara solo cómo queda la calle: la esquina exacta donde se detiene el robot depende de si revisa la bolsa antes o después de moverse."
+    },
+    {
+      "id": "c4-03",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Calle 45: una flor en pares, un papel en impares",
+      "tema": "seleccion",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 15,
+      "enunciado": "Suponiendo que el robot cuenta con suficiente cantidad de flores y papeles en su bolsa, escribir un programa que le permita recorrer la calle 45 dejando en las avenidas pares solo una flor y en las impares solo un papel.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              45,
+              100,
+              45
+            ],
+            "flores": [
+              0,
+              2
+            ],
+            "papeles": [
+              0,
+              2
+            ],
+            "bolsa": {
+              "flores": [
+                100,
+                100
+              ],
+              "papeles": [
+                100,
+                100
+              ]
+            }
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "ciudad"
+        ]
+      },
+      "solucion": [
+        "programa Cap4Ej3",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    par: boolean",
+        "  comenzar",
+        "    par := F",
+        "    Pos(1,45)",
+        "    derecha",
+        "    repetir 100",
+        "      mientras HayFlorEnLaEsquina",
+        "        tomarFlor",
+        "      mientras HayPapelEnLaEsquina",
+        "        tomarPapel",
+        "      si par",
+        "        depositarFlor",
+        "      sino",
+        "        depositarPapel",
+        "      par := ~par",
+        "      si PosAv < 100",
+        "        mover",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Interpretación: cada esquina termina con exactamente una flor (pares) o un papel (impares) y nada más. No existe operador de resto: la paridad se lleva con una variable boolean que se invierte en cada esquina."
+    },
+    {
+      "id": "c4-04",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Calle 20: esquinas solo con flores y solo con papeles",
+      "tema": "variables",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 15,
+      "enunciado": "Programar al robot para que recorra la calle 20 e informe cuántas esquinas tienen sólo flores y cuántas esquinas tienen sólo papeles.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              20,
+              100,
+              20
+            ],
+            "flores": [
+              0,
+              2
+            ],
+            "papeles": [
+              0,
+              2
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa"
+        ]
+      },
+      "solucion": [
+        "programa Cap4Ej4",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    soloF: numero",
+        "    soloP: numero",
+        "  comenzar",
+        "    soloF := 0",
+        "    soloP := 0",
+        "    Pos(1,20)",
+        "    derecha",
+        "    repetir 100",
+        "      si HayFlorEnLaEsquina & ~HayPapelEnLaEsquina",
+        "        soloF := soloF + 1",
+        "      si HayPapelEnLaEsquina & ~HayFlorEnLaEsquina",
+        "        soloP := soloP + 1",
+        "      si PosAv < 100",
+        "        mover",
+        "    Informar(soloF, soloP)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Se informa primero la cantidad de esquinas con solo flores y después la de solo papeles."
+    },
+    {
+      "id": "c4-05",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Perímetro: duplicar lo que está solo",
+      "tema": "seleccion",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 15,
+      "enunciado": "Programar al robot para que recorra el perímetro de la ciudad dejando un papel en aquellas esquinas que sólo tienen papel y una flor en las esquinas que tienen sólo flores. El recorrido debe finalizar al terminar de recorrer el perímetro.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "flores": [
+              0,
+              1
+            ],
+            "papeles": [
+              0,
+              1
+            ],
+            "bolsa": {
+              "flores": [
+                400,
+                400
+              ],
+              "papeles": [
+                400,
+                400
+              ]
+            }
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "ciudad",
+          "posicionFinal"
+        ]
+      },
+      "solucion": [
+        "programa Cap4Ej5",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    repetir 4",
+        "      repetir 99",
+        "        si HayPapelEnLaEsquina & ~HayFlorEnLaEsquina",
+        "          depositarPapel",
+        "        sino",
+        "          si HayFlorEnLaEsquina & ~HayPapelEnLaEsquina",
+        "            depositarFlor",
+        "        mover",
+        "      derecha",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Se asume que la bolsa tiene suficientes flores y papeles. Cada vértice se procesa una sola vez."
+    },
+    {
+      "id": "c4-06",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Perímetro: esquina con 3 flores y 3 papeles (existe)",
+      "tema": "iteracion",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 15,
+      "enunciado": "Programar al robot para que recorra el perímetro de la ciudad buscando una esquina con exactamente 3 flores y 3 papeles, suponiendo que esta esquina existe. Debe informar cuál es la esquina encontrada.",
+      "escenarios": [
+        {
+          "nombre": "en (100,40)",
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "flores": [
+              0,
+              2
+            ],
+            "papeles": [
+              0,
+              2
+            ]
+          },
+          "flores": [
+            [
+              100,
+              40,
+              3
+            ]
+          ],
+          "papeles": [
+            [
+              100,
+              40,
+              3
+            ]
+          ]
+        },
+        {
+          "nombre": "en (37,100)",
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "flores": [
+              0,
+              3
+            ],
+            "papeles": [
+              0,
+              2
+            ]
+          },
+          "flores": [
+            [
+              37,
+              100,
+              3
+            ]
+          ],
+          "papeles": [
+            [
+              37,
+              100,
+              3
+            ]
+          ]
+        },
+        {
+          "nombre": "en (1,1)",
+          "flores": [
+            [
+              1,
+              1,
+              3
+            ]
+          ],
+          "papeles": [
+            [
+              1,
+              1,
+              3
+            ]
+          ]
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa"
+        ]
+      },
+      "solucion": [
+        "programa Cap4Ej6",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    encontrada: boolean",
+        "    pasos: numero",
+        "    flores: numero",
+        "    papeles: numero",
+        "  comenzar",
+        "    encontrada := F",
+        "    pasos := 0",
+        "    mientras ~encontrada",
+        "      flores := 0",
+        "      papeles := 0",
+        "      mientras HayFlorEnLaEsquina",
+        "        tomarFlor",
+        "        flores := flores + 1",
+        "      mientras HayPapelEnLaEsquina",
+        "        tomarPapel",
+        "        papeles := papeles + 1",
+        "      si (flores = 3) & (papeles = 3)",
+        "        encontrada := V",
+        "      sino",
+        "        si pasos = 99",
+        "          derecha",
+        "          pasos := 0",
+        "        mover",
+        "        pasos := pasos + 1",
+        "    Informar(PosAv, PosCa)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Para contar hay que juntar, así que se compara solo lo que informa. Se informa la avenida y la calle."
+    },
+    {
+      "id": "c4-07",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Perímetro: esquina con 3 flores y 3 papeles (puede no existir)",
+      "tema": "iteracion",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 15,
+      "enunciado": "Idem 6, pero no se puede asegurar que tal esquina existe. En caso de encontrarla, informar cuál es esa esquina.",
+      "escenarios": [
+        {
+          "nombre": "existe en (60,1)",
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "flores": [
+              0,
+              2
+            ],
+            "papeles": [
+              0,
+              2
+            ]
+          },
+          "flores": [
+            [
+              60,
+              1,
+              3
+            ]
+          ],
+          "papeles": [
+            [
+              60,
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "nombre": "no existe",
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "flores": [
+              0,
+              2
+            ],
+            "papeles": [
+              0,
+              2
+            ]
+          }
+        },
+        {
+          "nombre": "existe en (1,2)",
+          "flores": [
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "papeles": [
+            [
+              1,
+              2,
+              3
+            ]
+          ]
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa"
+        ]
+      },
+      "solucion": [
+        "programa Cap4Ej7",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    encontrada: boolean",
+        "    pasos: numero",
+        "    total: numero",
+        "    flores: numero",
+        "    papeles: numero",
+        "  comenzar",
+        "    total := 0",
+        "    encontrada := F",
+        "    pasos := 0",
+        "    mientras ~encontrada & (total < 396)",
+        "      flores := 0",
+        "      papeles := 0",
+        "      mientras HayFlorEnLaEsquina",
+        "        tomarFlor",
+        "        flores := flores + 1",
+        "      mientras HayPapelEnLaEsquina",
+        "        tomarPapel",
+        "        papeles := papeles + 1",
+        "      si (flores = 3) & (papeles = 3)",
+        "        encontrada := V",
+        "      sino",
+        "        si pasos = 99",
+        "          derecha",
+        "          pasos := 0",
+        "        mover",
+        "        pasos := pasos + 1",
+        "        total := total + 1",
+        "    si encontrada",
+        "      Informar(PosAv, PosCa)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "El perímetro tiene 396 esquinas. Si no la encuentra, no informa nada."
+    },
+    {
+      "id": "c4-08",
+      "modulo": "aprender",
+      "tipo": "verdaderoFalso",
+      "titulo": "Verdadero o falso: queHace7",
+      "tema": "iteracion",
+      "dificultad": 3,
+      "enunciado": "Indique si son verdaderas o falsas las siguientes afirmaciones de acuerdo al programa. Justifique cada respuesta.",
+      "programa": [
+        "programa queHace7",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    repetir 5",
+        "      mover",
+        "    derecha",
+        "    mientras ((HayFlorEnLaEsquina | HayPapelEnLaEsquina) & (PosAv < 100))",
+        "      mover",
+        "    mientras (HayFlorEnLaEsquina)",
+        "      tomarFlor",
+        "    mientras (HayPapelEnLaEsquina)",
+        "      tomarPapel",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "afirmaciones": [
+        {
+          "texto": "Se puede asegurar que el robot pasará por la esquina (10,6).",
+          "respuesta": false,
+          "justificacion": "Solo llega a (10,6) si todas las esquinas de (1,6) a (9,6) tienen flor o papel. Si alguna está vacía, se detiene antes."
+        },
+        {
+          "texto": "Se puede asegurar que el robot pasará por la esquina (1,6).",
+          "respuesta": true,
+          "justificacion": "Arranca en (1,1) mirando al norte y el repetir 5 lo lleva siempre a (1,6)."
+        },
+        {
+          "texto": "El robot se puede caer de la ciudad.",
+          "respuesta": false,
+          "justificacion": "La condición PosAv < 100 corta el mientras al llegar a la avenida 100, y los primeros 5 pasos tampoco salen de la ciudad."
+        },
+        {
+          "texto": "En todas las esquinas por las que pasó el robot hay flores o papeles.",
+          "respuesta": false,
+          "justificacion": "De (1,1) a (1,5) no revisa nada, y la esquina donde se detiene puede estar vacía: justamente por eso se detiene."
+        },
+        {
+          "texto": "Al detenerse, se puede asegurar que el robot levantará flores y papeles.",
+          "respuesta": false,
+          "justificacion": "Si se detuvo porque encontró una esquina vacía, no hay nada que levantar. Solo es seguro si llegó a la avenida 100 y esa esquina tiene de las dos cosas."
+        },
+        {
+          "texto": "Al finalizar el recorrido, el robot tiene flores y papeles en la bolsa.",
+          "respuesta": false,
+          "justificacion": "Solo junta en la última esquina, y esa esquina puede no tener flores, papeles o ninguna de las dos."
+        }
+      ]
+    }
+  ]
+}

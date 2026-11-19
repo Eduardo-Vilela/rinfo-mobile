@@ -2,11 +2,12 @@ import { useMemo, useState } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { respuestasQueHace, type EjercicioQueHace } from 'rinfo-core';
 import { Boton, CodigoNumerado, Encabezado, s as ui } from '../components/ui';
+import { Ciudad } from '../components/Ciudad';
 import { marcarResuelto } from '../storage';
 import { color, espacio, mono } from '../theme';
 
 export function QueHace({ ejercicio, onVolver }: { ejercicio: EjercicioQueHace; onVolver: () => void }) {
-  const respuestas = useMemo(() => respuestasQueHace(ejercicio.programa, ejercicio.escenarios), [ejercicio]);
+  const { programa, respuestas } = useMemo(() => respuestasQueHace(ejercicio.programa, ejercicio.escenarios), [ejercicio]);
   const informa = ejercicio.programa.some((l) => l.includes('Informar'));
   const [i, setI] = useState(0);
   const [error, setError] = useState<boolean | null>(null);
@@ -92,6 +93,9 @@ export function QueHace({ ejercicio, onVolver }: { ejercicio: EjercicioQueHace; 
                 </Text>
               </View>
             )}
+            {comprobado && (
+              <Ciudad key={i} programa={programa} escenario={respuestas[i].escenario} semilla={respuestas[i].semilla} />
+            )}
           </>
         )}
       </ScrollView>
@@ -106,8 +110,8 @@ export function QueHace({ ejercicio, onVolver }: { ejercicio: EjercicioQueHace; 
 
 const st = StyleSheet.create({
   grande: { fontSize: 17, fontWeight: '600', color: color.texto },
-  opcion: { flex: 1, alignItems: 'center', paddingVertical: espacio(3), borderRadius: 10, borderWidth: 1, borderColor: color.borde },
+  opcion: { flex: 1, alignItems: 'center', paddingVertical: espacio(3), borderRadius: 10, borderWidth: 1, borderColor: color.bordeControl },
   opcionActiva: { backgroundColor: color.texto, borderColor: color.texto },
-  input: { borderWidth: 1, borderColor: color.borde, borderRadius: 8, paddingHorizontal: espacio(3), paddingVertical: espacio(2), width: 72, fontFamily: mono, fontSize: 15, color: color.texto },
+  input: { borderWidth: 1, borderColor: color.bordeControl, borderRadius: 8, paddingHorizontal: espacio(3), paddingVertical: espacio(2), width: 72, fontFamily: mono, fontSize: 15, color: color.texto },
   barra: { flexDirection: 'row', padding: espacio(3), borderTopWidth: StyleSheet.hairlineWidth, borderColor: color.borde },
 });

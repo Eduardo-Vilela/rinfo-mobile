@@ -14,7 +14,7 @@ const MODULOS: { id: Modulo; titulo: string; ayuda: string }[] = [
 ];
 
 function visibleEn(e: Ejercicio, m: Modulo) {
-  if (m === 'aprender') return e.tipo === 'queHace';
+  if (m === 'aprender') return e.tipo !== 'programa';
   return e.tipo === 'programa';
 }
 

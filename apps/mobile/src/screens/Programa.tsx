@@ -109,7 +109,7 @@ const st = StyleSheet.create({
   reloj: { fontSize: 17, fontWeight: '600', fontVariant: ['tabular-nums'], color: color.texto },
   editor: {
     minHeight: 320, fontFamily: mono, fontSize: 13, lineHeight: 20, color: color.texto,
-    borderWidth: 1, borderColor: color.borde, borderRadius: 12, padding: espacio(3),
+    borderWidth: 1, borderColor: color.bordeControl, borderRadius: 12, padding: espacio(3),
   },
   error: { backgroundColor: color.malFondo, borderRadius: 10, padding: espacio(3), gap: 2 },
   errorLinea: { fontSize: 12, fontWeight: '700', color: color.mal },
@@ -117,6 +117,6 @@ const st = StyleSheet.create({
     flexDirection: 'row', alignItems: 'center', gap: espacio(2), padding: espacio(3),
     borderTopWidth: StyleSheet.hairlineWidth, borderColor: color.borde, backgroundColor: color.fondo,
   },
-  tab: { paddingVertical: espacio(3), paddingHorizontal: espacio(4), borderRadius: 10, borderWidth: 1, borderColor: color.borde },
+  tab: { paddingVertical: espacio(3), paddingHorizontal: espacio(4), borderRadius: 10, borderWidth: 1, borderColor: color.bordeControl },
   tabTexto: { fontFamily: mono, fontSize: 14, color: color.texto },
 });

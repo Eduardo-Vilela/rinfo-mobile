@@ -1,0 +1,2246 @@
+{
+  "capitulo": "Ejercicios Adicionales",
+  "version": 1,
+  "ejercicios": [
+    {
+      "id": "ad-01",
+      "modulo": "examen",
+      "tipo": "programa",
+      "titulo": "Avenidas hasta una esquina vacía (a lo sumo 45 flores)",
+      "tema": "parametrosES",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 30,
+      "enunciado": "Escriba un programa que le permita al robot recorrer todas las avenidas de la ciudad. Cada avenida debe recorrerse sólo hasta encontrar una esquina vacía (sin flor ni papel) que seguro existe. Además, a medida que se recorre cada avenida debe informar si la misma tuvo a lo sumo 45 flores (hasta que encontró la esquina). Se debe usar modularización.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "flores": [
+              1,
+              1
+            ],
+            "papeles": [
+              0,
+              1
+            ],
+            "restricciones": [
+              {
+                "zona": [
+                  1,
+                  1,
+                  1,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  2,
+                  1,
+                  2,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  3,
+                  1,
+                  3,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  4,
+                  1,
+                  4,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  5,
+                  1,
+                  5,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  6,
+                  1,
+                  6,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  7,
+                  1,
+                  7,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  8,
+                  1,
+                  8,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  9,
+                  1,
+                  9,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  10,
+                  1,
+                  10,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  11,
+                  1,
+                  11,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  12,
+                  1,
+                  12,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  13,
+                  1,
+                  13,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  14,
+                  1,
+                  14,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  15,
+                  1,
+                  15,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  16,
+                  1,
+                  16,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  17,
+                  1,
+                  17,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  18,
+                  1,
+                  18,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  19,
+                  1,
+                  19,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  20,
+                  1,
+                  20,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  21,
+                  1,
+                  21,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  22,
+                  1,
+                  22,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  23,
+                  1,
+                  23,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  24,
+                  1,
+                  24,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  25,
+                  1,
+                  25,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  26,
+                  1,
+                  26,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  27,
+                  1,
+                  27,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  28,
+                  1,
+                  28,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  29,
+                  1,
+                  29,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  30,
+                  1,
+                  30,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  31,
+                  1,
+                  31,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  32,
+                  1,
+                  32,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  33,
+                  1,
+                  33,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  34,
+                  1,
+                  34,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  35,
+                  1,
+                  35,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  36,
+                  1,
+                  36,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  37,
+                  1,
+                  37,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  38,
+                  1,
+                  38,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  39,
+                  1,
+                  39,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  40,
+                  1,
+                  40,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  41,
+                  1,
+                  41,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  42,
+                  1,
+                  42,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  43,
+                  1,
+                  43,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  44,
+                  1,
+                  44,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  45,
+                  1,
+                  45,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  46,
+                  1,
+                  46,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  47,
+                  1,
+                  47,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  48,
+                  1,
+                  48,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  49,
+                  1,
+                  49,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  50,
+                  1,
+                  50,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  51,
+                  1,
+                  51,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  52,
+                  1,
+                  52,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  53,
+                  1,
+                  53,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  54,
+                  1,
+                  54,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  55,
+                  1,
+                  55,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  56,
+                  1,
+                  56,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  57,
+                  1,
+                  57,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  58,
+                  1,
+                  58,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  59,
+                  1,
+                  59,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  60,
+                  1,
+                  60,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  61,
+                  1,
+                  61,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  62,
+                  1,
+                  62,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  63,
+                  1,
+                  63,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  64,
+                  1,
+                  64,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  65,
+                  1,
+                  65,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  66,
+                  1,
+                  66,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  67,
+                  1,
+                  67,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  68,
+                  1,
+                  68,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  69,
+                  1,
+                  69,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  70,
+                  1,
+                  70,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  71,
+                  1,
+                  71,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  72,
+                  1,
+                  72,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  73,
+                  1,
+                  73,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  74,
+                  1,
+                  74,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  75,
+                  1,
+                  75,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  76,
+                  1,
+                  76,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  77,
+                  1,
+                  77,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  78,
+                  1,
+                  78,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  79,
+                  1,
+                  79,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  80,
+                  1,
+                  80,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  81,
+                  1,
+                  81,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  82,
+                  1,
+                  82,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  83,
+                  1,
+                  83,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  84,
+                  1,
+                  84,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  85,
+                  1,
+                  85,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  86,
+                  1,
+                  86,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  87,
+                  1,
+                  87,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  88,
+                  1,
+                  88,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  89,
+                  1,
+                  89,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  90,
+                  1,
+                  90,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  91,
+                  1,
+                  91,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  92,
+                  1,
+                  92,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  93,
+                  1,
+                  93,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  94,
+                  1,
+                  94,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  95,
+                  1,
+                  95,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  96,
+                  1,
+                  96,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  97,
+                  1,
+                  97,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  98,
+                  1,
+                  98,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  99,
+                  1,
+                  99,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              },
+              {
+                "zona": [
+                  100,
+                  1,
+                  100,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 2
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa"
+        ],
+        "usa": {
+          "procesosMin": 1
+        }
+      },
+      "solucion": [
+        "programa Adicional1",
+        "procesos",
+        "  proceso RecorrerAvenida(ES flores: numero)",
+        "  comenzar",
+        "    flores := 0",
+        "    mientras HayFlorEnLaEsquina | HayPapelEnLaEsquina",
+        "      mientras HayFlorEnLaEsquina",
+        "        tomarFlor",
+        "        flores := flores + 1",
+        "      mover",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    a: numero",
+        "    f: numero",
+        "  comenzar",
+        "    a := 1",
+        "    repetir 100",
+        "      Pos(a,1)",
+        "      RecorrerAvenida(f)",
+        "      Informar(f <= 45)",
+        "      a := a + 1",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Por cada avenida se informa V si tuvo a lo sumo 45 flores y F si no."
+    },
+    {
+      "id": "ad-02",
+      "modulo": "examen",
+      "tipo": "programa",
+      "titulo": "Esquinas con 20 flores y avenidas con menos de 60 papeles",
+      "tema": "parametrosES",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 30,
+      "enunciado": "Escriba un programa que le permita al robot recorrer todas las avenidas de la ciudad. Al finalizar el recorrido debe informar la cantidad de esquinas con exactamente 20 flores y la cantidad de avenidas con menos de 60 papeles. Se debe usar modularización y no modificar la cantidad de papeles/flores de las esquinas.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "flores": [
+              19,
+              20
+            ],
+            "papeles": [
+              0,
+              2
+            ],
+            "densidad": {
+              "flores": 0.02,
+              "papeles": 0.6
+            }
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa",
+          "ciudad"
+        ],
+        "usa": {
+          "procesosMin": 1
+        }
+      },
+      "solucion": [
+        "programa Adicional2",
+        "procesos",
+        "  proceso RecorrerAvenida(ES veinte: numero; ES pap: numero)",
+        "  variables",
+        "    f: numero",
+        "    p: numero",
+        "  comenzar",
+        "    pap := 0",
+        "    repetir 100",
+        "      f := 0",
+        "      mientras HayFlorEnLaEsquina",
+        "        tomarFlor",
+        "        f := f + 1",
+        "      si f = 20",
+        "        veinte := veinte + 1",
+        "      repetir f",
+        "        depositarFlor",
+        "      p := 0",
+        "      mientras HayPapelEnLaEsquina",
+        "        tomarPapel",
+        "        p := p + 1",
+        "      pap := pap + p",
+        "      repetir p",
+        "        depositarPapel",
+        "      si PosCa < 100",
+        "        mover",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    veinte: numero",
+        "    pocas: numero",
+        "    pap: numero",
+        "    a: numero",
+        "  comenzar",
+        "    veinte := 0",
+        "    pocas := 0",
+        "    a := 1",
+        "    repetir 100",
+        "      Pos(a,1)",
+        "      RecorrerAvenida(veinte, pap)",
+        "      si pap < 60",
+        "        pocas := pocas + 1",
+        "      a := a + 1",
+        "    Informar(veinte, pocas)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Se informa primero la cantidad de esquinas con exactamente 20 flores y después la de avenidas con menos de 60 papeles."
+    },
+    {
+      "id": "ad-04",
+      "modulo": "examen",
+      "tipo": "programa",
+      "titulo": "Avenida con 25 flores y pasos en la calle 75",
+      "tema": "parametrosES",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 30,
+      "enunciado": "Programe al robot para que recorra la ciudad por avenidas, juntando papeles, hasta encontrar una avenida con exactamente 25 flores. Cuando la encuentra debe recorrer la calle 75 (desde la avenida 1) y dar tantos pasos como papeles juntó en todas las avenidas recorridas. La avenida con 25 flores seguro existe y los papeles juntados son menos de 100. Las esquinas pueden modificarse. Modularizar.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "flores": [
+              1,
+              1
+            ],
+            "papeles": [
+              1,
+              1
+            ],
+            "densidad": {
+              "flores": 0.2,
+              "papeles": 0.002
+            },
+            "restricciones": [
+              {
+                "zona": [
+                  7,
+                  1,
+                  7,
+                  100
+                ],
+                "totalFlores": {
+                  "min": 25,
+                  "max": 25
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  1,
+                  100,
+                  100
+                ],
+                "totalPapeles": {
+                  "max": 20
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "posicionFinal"
+        ],
+        "usa": {
+          "procesosMin": 1
+        }
+      },
+      "solucion": [
+        "programa Adicional4",
+        "procesos",
+        "  proceso RecorrerAvenida(ES flores: numero; ES papeles: numero)",
+        "  comenzar",
+        "    flores := 0",
+        "    repetir 100",
+        "      mientras HayFlorEnLaEsquina",
+        "        tomarFlor",
+        "        flores := flores + 1",
+        "      mientras HayPapelEnLaEsquina",
+        "        tomarPapel",
+        "        papeles := papeles + 1",
+        "      si PosCa < 100",
+        "        mover",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    papeles: numero",
+        "    flores: numero",
+        "    a: numero",
+        "  comenzar",
+        "    papeles := 0",
+        "    a := 1",
+        "    Pos(a,1)",
+        "    RecorrerAvenida(flores, papeles)",
+        "    mientras flores <> 25",
+        "      a := a + 1",
+        "      Pos(a,1)",
+        "      RecorrerAvenida(flores, papeles)",
+        "    Pos(1,75)",
+        "    derecha",
+        "    repetir papeles",
+        "      mover",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Ejemplo del enunciado: si la avenida 5 tiene 25 flores y entre las avenidas 1 a 5 juntó 62 papeles, recorre la calle 75 dando 62 pasos."
+    },
+    {
+      "id": "ad-06",
+      "modulo": "examen",
+      "tipo": "programa",
+      "titulo": "15 cuadrados crecientes con más de 20 flores",
+      "tema": "parametrosES",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 30,
+      "enunciado": "Realice un programa para que el robot recorra 15 cuadrados que comienzan siempre en la esquina (1,1). En cada cuadrado debe juntar las flores y los papeles. Al finalizar los 15 cuadrados debe informar cuántos cuadrados tenían más de 20 flores. El primer cuadrado es de lado 1, el segundo de lado 2 y así hasta el 15, de lado 15. Como mínimo debe existir un módulo que realice un cuadrado.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              16,
+              16
+            ],
+            "flores": [
+              0,
+              4
+            ],
+            "papeles": [
+              0,
+              2
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa",
+          "ciudad"
+        ],
+        "usa": {
+          "procesosMin": 1,
+          "parametros": [
+            "E"
+          ]
+        }
+      },
+      "solucion": [
+        "programa Adicional6",
+        "procesos",
+        "  proceso Cuadrado(E lado: numero; ES flores: numero)",
+        "  comenzar",
+        "    flores := 0",
+        "    repetir 4",
+        "      repetir lado",
+        "        mientras HayFlorEnLaEsquina",
+        "          tomarFlor",
+        "          flores := flores + 1",
+        "        mientras HayPapelEnLaEsquina",
+        "          tomarPapel",
+        "        mover",
+        "      derecha",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    mas20: numero",
+        "    lado: numero",
+        "    f: numero",
+        "  comenzar",
+        "    mas20 := 0",
+        "    lado := 1",
+        "    repetir 15",
+        "      Cuadrado(lado, f)",
+        "      si f > 20",
+        "        mas20 := mas20 + 1",
+        "      lado := lado + 1",
+        "    Informar(mas20)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Como cada cuadrado junta lo que encuentra, los siguientes ya no ven esas flores: el orden importa."
+    },
+    {
+      "id": "ad-07",
+      "modulo": "examen",
+      "tipo": "programa",
+      "titulo": "Examen 2013: avenida 8 y rectángulo",
+      "tema": "parametrosES",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 40,
+      "enunciado": "Escriba un algoritmo para que el robot recorra la avenida 8 juntando todas las flores y todos los papeles hasta encontrar una esquina vacía. Luego debe recorrer un rectángulo que comience en (1,1), donde el alto es igual a la cantidad de flores juntadas en la avenida 8 y el ancho es igual a la cantidad de papeles juntados. SE DEBE USAR MODULARIZACIÓN (como mínimo un módulo para la avenida 8 y otro para el rectángulo). La esquina vacía seguro existe. El total de flores y de papeles de la avenida 8 es <= 99.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              8,
+              1,
+              8,
+              100
+            ],
+            "flores": [
+              0,
+              2
+            ],
+            "papeles": [
+              0,
+              2
+            ],
+            "restricciones": [
+              {
+                "zona": [
+                  8,
+                  1,
+                  8,
+                  100
+                ],
+                "esquinasVacias": {
+                  "min": 3
+                }
+              },
+              {
+                "zona": [
+                  8,
+                  1,
+                  8,
+                  40
+                ],
+                "totalFlores": {
+                  "max": 60
+                },
+                "totalPapeles": {
+                  "max": 60
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "recorrido",
+          "bolsa"
+        ],
+        "usa": {
+          "procesosMin": 2,
+          "parametros": [
+            "E",
+            "ES"
+          ]
+        }
+      },
+      "solucion": [
+        "programa Examen2013a",
+        "procesos",
+        "  proceso Avenida8(ES f: numero; ES p: numero)",
+        "  comenzar",
+        "    f := 0",
+        "    p := 0",
+        "    mientras HayFlorEnLaEsquina | HayPapelEnLaEsquina",
+        "      mientras HayFlorEnLaEsquina",
+        "        tomarFlor",
+        "        f := f + 1",
+        "      mientras HayPapelEnLaEsquina",
+        "        tomarPapel",
+        "        p := p + 1",
+        "      mover",
+        "  fin",
+        "  proceso Rectangulo(E alto: numero; E ancho: numero)",
+        "  comenzar",
+        "    repetir 2",
+        "      repetir alto",
+        "        mover",
+        "      derecha",
+        "      repetir ancho",
+        "        mover",
+        "      derecha",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    f: numero",
+        "    p: numero",
+        "  comenzar",
+        "    Pos(8,1)",
+        "    Avenida8(f, p)",
+        "    Pos(1,1)",
+        "    Rectangulo(f, p)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Ejemplo: si juntó 5 flores y 4 papeles, hace un rectángulo de alto 5 y ancho 4 desde (1,1). El robot mira al norte durante todo el programa."
+    },
+    {
+      "id": "ad-08",
+      "modulo": "examen",
+      "tipo": "programa",
+      "titulo": "Examen 2013: calles impares y avenidas 10 a 12",
+      "tema": "parametrosES",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 40,
+      "enunciado": "Escriba un algoritmo para que el robot recorra las calles impares de la ciudad. Cada calle debe recorrerse hasta juntar al menos 10 flores. Una vez que ha recorrido todas las calles debe recorrer la avenida 10, la 11 y la 12 juntando todos los papeles. Al finalizar de recorrer las tres avenidas debe informar la cantidad total de papeles juntados. SE DEBE USAR MODULARIZACIÓN (como mínimo un módulo para las calles y otro para las avenidas). Seguro que cada calle tiene al menos 10 flores.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "flores": [
+              0,
+              2
+            ],
+            "papeles": [
+              0,
+              2
+            ],
+            "densidad": {
+              "flores": 0.3,
+              "papeles": 0.3
+            },
+            "restricciones": [
+              {
+                "zona": [
+                  1,
+                  1,
+                  100,
+                  1
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  3,
+                  100,
+                  3
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  5,
+                  100,
+                  5
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  7,
+                  100,
+                  7
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  9,
+                  100,
+                  9
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  11,
+                  100,
+                  11
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  13,
+                  100,
+                  13
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  15,
+                  100,
+                  15
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  17,
+                  100,
+                  17
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  19,
+                  100,
+                  19
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  21,
+                  100,
+                  21
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  23,
+                  100,
+                  23
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  25,
+                  100,
+                  25
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  27,
+                  100,
+                  27
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  29,
+                  100,
+                  29
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  31,
+                  100,
+                  31
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  33,
+                  100,
+                  33
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  35,
+                  100,
+                  35
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  37,
+                  100,
+                  37
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  39,
+                  100,
+                  39
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  41,
+                  100,
+                  41
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  43,
+                  100,
+                  43
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  45,
+                  100,
+                  45
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  47,
+                  100,
+                  47
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  49,
+                  100,
+                  49
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  51,
+                  100,
+                  51
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  53,
+                  100,
+                  53
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  55,
+                  100,
+                  55
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  57,
+                  100,
+                  57
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  59,
+                  100,
+                  59
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  61,
+                  100,
+                  61
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  63,
+                  100,
+                  63
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  65,
+                  100,
+                  65
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  67,
+                  100,
+                  67
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  69,
+                  100,
+                  69
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  71,
+                  100,
+                  71
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  73,
+                  100,
+                  73
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  75,
+                  100,
+                  75
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  77,
+                  100,
+                  77
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  79,
+                  100,
+                  79
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  81,
+                  100,
+                  81
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  83,
+                  100,
+                  83
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  85,
+                  100,
+                  85
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  87,
+                  100,
+                  87
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  89,
+                  100,
+                  89
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  91,
+                  100,
+                  91
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  93,
+                  100,
+                  93
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  95,
+                  100,
+                  95
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  97,
+                  100,
+                  97
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  99,
+                  100,
+                  99
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa"
+        ],
+        "usa": {
+          "procesosMin": 2
+        }
+      },
+      "solucion": [
+        "programa Examen2013b",
+        "procesos",
+        "  proceso Calle10Flores",
+        "  variables",
+        "    f: numero",
+        "  comenzar",
+        "    f := 0",
+        "    mientras f < 10",
+        "      mientras HayFlorEnLaEsquina",
+        "        tomarFlor",
+        "        f := f + 1",
+        "      si f < 10",
+        "        mover",
+        "  fin",
+        "  proceso AvenidaPapeles(ES total: numero)",
+        "  comenzar",
+        "    repetir 100",
+        "      mientras HayPapelEnLaEsquina",
+        "        tomarPapel",
+        "        total := total + 1",
+        "      si PosCa < 100",
+        "        mover",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    c: numero",
+        "    a: numero",
+        "    total: numero",
+        "  comenzar",
+        "    c := 1",
+        "    derecha",
+        "    repetir 50",
+        "      Pos(1,c)",
+        "      Calle10Flores",
+        "      c := c + 2",
+        "    repetir 3",
+        "      derecha",
+        "    total := 0",
+        "    a := 10",
+        "    repetir 3",
+        "      Pos(a,1)",
+        "      AvenidaPapeles(total)",
+        "      a := a + 1",
+        "    Informar(total)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Se informan solo los papeles de las tres avenidas. En cada calle se juntan todas las flores de cada esquina hasta llegar a 10 o más."
+    }
+  ]
+}

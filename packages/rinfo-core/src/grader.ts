@@ -27,7 +27,7 @@ export function ejecutar(programa: Programa, escenario: Escenario, semilla = 1):
 /** Cuántas ciudades distintas se prueban por cada escenario aleatorio. */
 export const SEMILLAS_POR_ESCENARIO = 3;
 
-function corridas(e: Ejercicio): { escenario: Escenario; semilla: number; nombre: string }[] {
+function corridas(e: EjercicioPrograma): { escenario: Escenario; semilla: number; nombre: string }[] {
   return e.escenarios.flatMap((esc, i) => {
     const nombre = esc.nombre ?? `Ciudad al azar ${i + 1}`;
     if (!esc.aleatorio) return [{ escenario: esc, semilla: 1, nombre }];
@@ -39,6 +39,8 @@ function corridas(e: Ejercicio): { escenario: Escenario; semilla: number; nombre
 
 export type ResultadoEscenario = {
   nombre: string;
+  escenario: Escenario;
+  semilla: number;
   aprobado: boolean;
   diferencias: string[];
   alumno: Resultado;
@@ -56,15 +58,31 @@ const NOMBRE: Record<Observable, string> = {
 
 const igual = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
 
+/** Informar(a, b) e Informar(a) + Informar(b) cuentan igual: se comparan los valores en orden. */
+const valores = (r: Resultado) => r.informes.join(' ').split(/\s+/).filter(Boolean);
+/** Un Pos a la esquina donde ya está el robot no cambia el recorrido. */
+const camino = (r: Resultado) => r.recorrido.filter((p, i) => i === 0 || !igual(p, r.recorrido[i - 1]));
+
+function observar(o: Observable, r: Resultado): unknown {
+  switch (o) {
+    case 'informa': return valores(r);
+    case 'posicionFinal': return r.posicionFinal;
+    case 'recorrido': return camino(r);
+    case 'ciudad': return r.ciudad;
+    case 'bolsa': return r.bolsa;
+  }
+}
+
 function describirDiferencia(o: Observable, a: Resultado, e: Resultado): string {
   switch (o) {
     case 'informa': return `${NOMBRE[o]} no coincide: informaste [${a.informes.join(', ') || 'nada'}] y se esperaba [${e.informes.join(', ') || 'nada'}].`;
     case 'posicionFinal': return `${NOMBRE[o]} no coincide: terminaste en (${a.posicionFinal}) y se esperaba (${e.posicionFinal}).`;
     case 'bolsa': return `${NOMBRE[o]} no coincide: ${a.bolsa.flores} flores y ${a.bolsa.papeles} papeles, se esperaban ${e.bolsa.flores} y ${e.bolsa.papeles}.`;
     case 'recorrido': {
-      const k = a.recorrido.findIndex((p, i) => !igual(p, e.recorrido[i]));
-      const idx = k < 0 ? Math.min(a.recorrido.length, e.recorrido.length) : k;
-      return `${NOMBRE[o]} se separa del esperado en el paso ${idx}: (${a.recorrido[idx] ?? 'fin'}) en lugar de (${e.recorrido[idx] ?? 'fin'}).`;
+      const ca = camino(a), ce = camino(e);
+      const k = ca.findIndex((p, i) => !igual(p, ce[i]));
+      const idx = k < 0 ? Math.min(ca.length, ce.length) : k;
+      return `${NOMBRE[o]} se separa del esperado en el paso ${idx}: (${ca[idx] ?? 'fin'}) en lugar de (${ce[idx] ?? 'fin'}).`;
     }
     case 'ciudad': {
       const ka = new Map(a.ciudad.map(([av, ca, f, p]) => [`${av},${ca}`, [f, p]]));
@@ -132,11 +150,9 @@ export function corregir(codigo: string, e: EjercicioPrograma): Correccion {
     if (alumno.error) diferencias.push(`Error al ejecutar (línea ${alumno.error.linea}): ${alumno.error.mensaje}`);
     else if (esperado.error) diferencias.push('La solución de referencia falla en este escenario: revisá el ejercicio.');
     else for (const o of e.validaciones.compararConReferencia) {
-      const a = o === 'informa' ? alumno.informes : o === 'posicionFinal' ? alumno.posicionFinal : o === 'recorrido' ? alumno.recorrido : o === 'ciudad' ? alumno.ciudad : alumno.bolsa;
-      const b = o === 'informa' ? esperado.informes : o === 'posicionFinal' ? esperado.posicionFinal : o === 'recorrido' ? esperado.recorrido : o === 'ciudad' ? esperado.ciudad : esperado.bolsa;
-      if (!igual(a, b)) diferencias.push(describirDiferencia(o, alumno, esperado));
+      if (!igual(observar(o, alumno), observar(o, esperado))) diferencias.push(describirDiferencia(o, alumno, esperado));
     }
-    return { nombre, aprobado: diferencias.length === 0, diferencias, alumno, esperado };
+    return { nombre, escenario, semilla, aprobado: diferencias.length === 0, diferencias, alumno, esperado };
   });
   const req = requisitos(c.programa, e, codigo);
   return { estado: 'corregido', aprobado: req.length === 0 && escenarios.every((s) => s.aprobado), escenarios, requisitos: req };
@@ -146,5 +162,8 @@ export function corregir(codigo: string, e: EjercicioPrograma): Correccion {
 export function respuestasQueHace(programa: string[], escenarios: Escenario[]) {
   const c = compilar(programa.join('\n'));
   if (!c.programa) throw new Error(`El programa no compila: ${c.errores[0]?.mensaje}`);
-  return escenarios.map((esc, i) => ({ nombre: esc.nombre ?? `Escenario ${i + 1}`, resultado: ejecutar(c.programa!, esc, 1000 * (i + 1)) }));
+  return {
+    programa: c.programa,
+    respuestas: escenarios.map((esc, i) => ({ nombre: esc.nombre ?? `Escenario ${i + 1}`, escenario: esc, semilla: 1000 * (i + 1), resultado: ejecutar(c.programa!, esc, 1000 * (i + 1)) })),
+  };
 }

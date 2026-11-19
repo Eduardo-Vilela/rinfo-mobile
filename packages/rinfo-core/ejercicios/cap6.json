@@ -1,0 +1,434 @@
+{
+  "capitulo": "Capítulo 6 – Parámetros de Entrada",
+  "version": 1,
+  "ejercicios": [
+    {
+      "id": "c6-01",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Cuadrado de lado variable",
+      "tema": "parametrosE",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Escriba un proceso que le permita al robot realizar un cuadrado a partir de la esquina donde está parado, girando en la dirección de las agujas del reloj y recibiendo como dato la longitud del lado. Probalo haciendo un cuadrado de lado 4 desde (1,1) y otro de lado 7 desde (20,20).",
+      "escenarios": [
+        {
+          "nombre": "ciudad vacía"
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "recorrido"
+        ],
+        "usa": {
+          "procesosMin": 1,
+          "parametros": [
+            "E"
+          ]
+        }
+      },
+      "solucion": [
+        "programa Cap6Ej1",
+        "procesos",
+        "  proceso Cuadrado(E lado: numero)",
+        "  comenzar",
+        "    repetir 4",
+        "      repetir lado",
+        "        mover",
+        "      derecha",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    Cuadrado(4)",
+        "    Pos(20,20)",
+        "    Cuadrado(7)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c6-03",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Rectángulo de alto y ancho variables",
+      "tema": "parametrosE",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "Escriba un proceso que le permita al robot realizar un rectángulo a partir de la esquina donde está parado cuyas dimensiones, alto y ancho, se reciben. Probalo con alto 3 y ancho 5 desde (1,1), y con alto 6 y ancho 2 desde (10,10).",
+      "escenarios": [
+        {
+          "nombre": "ciudad vacía"
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "recorrido"
+        ],
+        "usa": {
+          "procesosMin": 1,
+          "parametros": [
+            "E"
+          ]
+        }
+      },
+      "solucion": [
+        "programa Cap6Ej3",
+        "procesos",
+        "  proceso Rectangulo(E alto: numero; E ancho: numero)",
+        "  comenzar",
+        "    repetir 2",
+        "      repetir alto",
+        "        mover",
+        "      derecha",
+        "      repetir ancho",
+        "        mover",
+        "      derecha",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    Rectangulo(3,5)",
+        "    Pos(10,10)",
+        "    Rectangulo(6,2)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Gira en sentido horario: primero sube el alto, después avanza el ancho."
+    },
+    {
+      "id": "c6-06b",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Recorrer todas las avenidas",
+      "tema": "parametrosE",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "(a) Escriba un proceso que le permita al robot recorrer una avenida cuyo número se ingresa como parámetro de entrada. Utilícelo para recorrer todas las avenidas de la ciudad.",
+      "escenarios": [
+        {
+          "nombre": "ciudad vacía"
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "recorrido"
+        ],
+        "usa": {
+          "procesosMin": 1,
+          "parametros": [
+            "E"
+          ]
+        }
+      },
+      "solucion": [
+        "programa Cap6Ej6b",
+        "procesos",
+        "  proceso RecorrerAvenida(E av: numero)",
+        "  comenzar",
+        "    Pos(av,1)",
+        "    repetir 99",
+        "      mover",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    a: numero",
+        "  comenzar",
+        "    a := 1",
+        "    repetir 100",
+        "      RecorrerAvenida(a)",
+        "      a := a + 1",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c6-06c",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Recorrer avenidas 5 a 15",
+      "tema": "parametrosE",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "(a) Escriba un proceso que le permita al robot recorrer una avenida cuyo número se ingresa como parámetro de entrada. Utilícelo para recorrer las avenidas 5, 6, 7 … 15.",
+      "escenarios": [
+        {
+          "nombre": "ciudad vacía"
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "recorrido"
+        ],
+        "usa": {
+          "procesosMin": 1,
+          "parametros": [
+            "E"
+          ]
+        }
+      },
+      "solucion": [
+        "programa Cap6Ej6c",
+        "procesos",
+        "  proceso RecorrerAvenida(E av: numero)",
+        "  comenzar",
+        "    Pos(av,1)",
+        "    repetir 99",
+        "      mover",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    a: numero",
+        "  comenzar",
+        "    a := 5",
+        "    repetir 11",
+        "      RecorrerAvenida(a)",
+        "      a := a + 1",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c6-06d",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Recorrer avenidas pares",
+      "tema": "parametrosE",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 10,
+      "enunciado": "(a) Escriba un proceso que le permita al robot recorrer una avenida cuyo número se ingresa como parámetro de entrada. Utilícelo para recorrer las avenidas pares de la ciudad.",
+      "escenarios": [
+        {
+          "nombre": "ciudad vacía"
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "recorrido"
+        ],
+        "usa": {
+          "procesosMin": 1,
+          "parametros": [
+            "E"
+          ]
+        }
+      },
+      "solucion": [
+        "programa Cap6Ej6d",
+        "procesos",
+        "  proceso RecorrerAvenida(E av: numero)",
+        "  comenzar",
+        "    Pos(av,1)",
+        "    repetir 99",
+        "      mover",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    a: numero",
+        "  comenzar",
+        "    a := 2",
+        "    repetir 50",
+        "      RecorrerAvenida(a)",
+        "      a := a + 2",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c6-07",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "CalleFlor",
+      "tema": "parametrosE",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 15,
+      "enunciado": "Programe al robot para que realice un módulo CalleFlor que recorra una calle cuyo número se ingresa como parámetro, hasta juntar tantas flores como lo indica otro parámetro de entrada que este módulo recibe. La cantidad de flores seguro existe. Usalo para juntar 10 flores en la calle 5 y después 3 flores en la calle 30.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "flores": [
+              0,
+              2
+            ],
+            "densidad": {
+              "flores": 0.3
+            },
+            "restricciones": [
+              {
+                "zona": [
+                  1,
+                  5,
+                  100,
+                  5
+                ],
+                "totalFlores": {
+                  "min": 10
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  30,
+                  100,
+                  30
+                ],
+                "totalFlores": {
+                  "min": 3
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "ciudad",
+          "bolsa",
+          "posicionFinal"
+        ],
+        "usa": {
+          "procesosMin": 1,
+          "parametros": [
+            "E"
+          ]
+        }
+      },
+      "solucion": [
+        "programa Cap6Ej7",
+        "procesos",
+        "  proceso CalleFlor(E calle: numero; E cant: numero)",
+        "  variables",
+        "    juntadas: numero",
+        "  comenzar",
+        "    Pos(1,calle)",
+        "    juntadas := 0",
+        "    mientras juntadas < cant",
+        "      mientras HayFlorEnLaEsquina & (juntadas < cant)",
+        "        tomarFlor",
+        "        juntadas := juntadas + 1",
+        "      si juntadas < cant",
+        "        mover",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    derecha",
+        "    CalleFlor(5, 10)",
+        "    CalleFlor(30, 3)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "El robot gira una sola vez al principio para mirar al este; el proceso asume que ya mira hacia ese lado. Junta flor por flor, así deja en la ciudad las que sobran."
+    },
+    {
+      "id": "c6-08",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Avenida con cantidad de pasos",
+      "tema": "parametrosE",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 15,
+      "enunciado": "Programe al robot para que realice un módulo Avenida que recorra una avenida, cuyo número se ingresa como parámetro, hasta dar tantos pasos como los indicados por otro parámetro de entrada. Si recibe algún valor negativo no debe dar pasos. La cantidad máxima de pasos es 99: cualquier valor mayor implica dar solo 99 pasos. Probalo con (3,1), (12,5), (20,-4) y (40,150).",
+      "escenarios": [
+        {
+          "nombre": "ciudad vacía"
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "recorrido"
+        ],
+        "usa": {
+          "procesosMin": 1,
+          "parametros": [
+            "E"
+          ]
+        }
+      },
+      "solucion": [
+        "programa Cap6Ej8",
+        "procesos",
+        "  proceso Avenida(E av: numero; E pasos: numero)",
+        "  variables",
+        "    n: numero",
+        "  comenzar",
+        "    Pos(av,1)",
+        "    n := pasos",
+        "    si n > 99",
+        "      n := 99",
+        "    si n > 0",
+        "      repetir n",
+        "        mover",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  comenzar",
+        "    Avenida(3, 1)",
+        "    Avenida(12, 5)",
+        "    Avenida(20, -4)",
+        "    Avenida(40, 150)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "No se puede asignar a un parámetro E: el valor se copia a una variable local antes de corregirlo."
+    }
+  ]
+}

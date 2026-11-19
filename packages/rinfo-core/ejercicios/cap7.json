@@ -1,0 +1,1224 @@
+{
+  "capitulo": "Capítulo 7 – Parámetros de Entrada/Salida",
+  "version": 1,
+  "ejercicios": [
+    {
+      "id": "c7-01",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Total de flores y papeles de la ciudad",
+      "tema": "parametrosES",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 20,
+      "enunciado": "Escriba un programa que le permita al robot informar la cantidad total de flores y la cantidad total de papeles que hay en toda la ciudad. Para hacerlo, utilice un proceso que recorra una calle cuyo número recibe como parámetro y devuelva la información correspondiente.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "flores": [
+              0,
+              2
+            ],
+            "papeles": [
+              0,
+              2
+            ],
+            "densidad": {
+              "flores": 0.3,
+              "papeles": 0.3
+            }
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa"
+        ],
+        "usa": {
+          "procesosMin": 1,
+          "parametros": [
+            "E",
+            "ES"
+          ]
+        }
+      },
+      "solucion": [
+        "programa Cap7Ej1",
+        "procesos",
+        "  proceso RecorrerCalle(E calle: numero; ES flores: numero; ES papeles: numero)",
+        "  comenzar",
+        "    Pos(1,calle)",
+        "    flores := 0",
+        "    papeles := 0",
+        "    repetir 100",
+        "      mientras HayFlorEnLaEsquina",
+        "        tomarFlor",
+        "        flores := flores + 1",
+        "      mientras HayPapelEnLaEsquina",
+        "        tomarPapel",
+        "        papeles := papeles + 1",
+        "      si PosAv < 100",
+        "        mover",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    totF: numero",
+        "    totP: numero",
+        "    f: numero",
+        "    p: numero",
+        "    c: numero",
+        "  comenzar",
+        "    totF := 0",
+        "    totP := 0",
+        "    c := 1",
+        "    derecha",
+        "    repetir 100",
+        "      RecorrerCalle(c, f, p)",
+        "      totF := totF + f",
+        "      totP := totP + p",
+        "      c := c + 1",
+        "    Informar(totF, totP)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Se informa primero el total de flores y después el de papeles."
+    },
+    {
+      "id": "c7-02",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Trasladar flores de calles impares",
+      "tema": "parametrosES",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 20,
+      "enunciado": "El robot debe limpiar de flores las calles impares de la siguiente forma: toda flor que se encuentre en una calle impar debe ser trasladada a la calle par siguiente sobre la misma avenida. Por ejemplo, si en (4,1) hay una flor, debe llevarse a (4,2). Al terminar el recorrido debe informar la cantidad total de flores que trasladó.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "flores": [
+              0,
+              2
+            ],
+            "densidad": {
+              "flores": 0.15
+            }
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa",
+          "ciudad"
+        ],
+        "usa": {
+          "procesosMin": 1,
+          "parametros": [
+            "ES"
+          ]
+        }
+      },
+      "solucion": [
+        "programa Cap7Ej2",
+        "procesos",
+        "  proceso Trasladar(ES total: numero)",
+        "  variables",
+        "    k: numero",
+        "  comenzar",
+        "    k := 0",
+        "    mientras HayFlorEnLaEsquina",
+        "      tomarFlor",
+        "      k := k + 1",
+        "    total := total + k",
+        "    si k > 0",
+        "      Pos(PosAv, PosCa + 1)",
+        "      repetir k",
+        "        depositarFlor",
+        "      Pos(PosAv, PosCa - 1)",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    total: numero",
+        "    c: numero",
+        "  comenzar",
+        "    total := 0",
+        "    c := 1",
+        "    derecha",
+        "    repetir 50",
+        "      Pos(1,c)",
+        "      repetir 100",
+        "        Trasladar(total)",
+        "        si PosAv < 100",
+        "          mover",
+        "      c := c + 2",
+        "    Informar(total)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c7-03",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Avenida 9: una flor más que papeles",
+      "tema": "parametrosES",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 25,
+      "enunciado": "Escriba un programa para que el robot recorra la avenida 9 depositando en cada esquina lo que haga falta para que la cantidad de flores supere en 1 a la cantidad de papeles. Si no tiene en su bolsa lo necesario para hacerlo debe detener el recorrido. Al finalizar debe informar la cantidad de esquinas que pudo completar adecuadamente. Si el recorrido quedó incompleto debe retornar a (9,1).",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              9,
+              1,
+              9,
+              100
+            ],
+            "flores": [
+              0,
+              3
+            ],
+            "papeles": [
+              0,
+              3
+            ],
+            "bolsa": {
+              "flores": [
+                400,
+                400
+              ],
+              "papeles": [
+                400,
+                400
+              ]
+            }
+          }
+        },
+        {
+          "aleatorio": {
+            "zona": [
+              9,
+              1,
+              9,
+              100
+            ],
+            "flores": [
+              0,
+              3
+            ],
+            "papeles": [
+              0,
+              3
+            ],
+            "bolsa": {
+              "flores": [
+                10,
+                10
+              ],
+              "papeles": [
+                10,
+                10
+              ]
+            }
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa",
+          "posicionFinal"
+        ],
+        "usa": {
+          "procesosMin": 2,
+          "parametros": [
+            "E",
+            "ES"
+          ]
+        }
+      },
+      "solucion": [
+        "programa Cap7Ej3",
+        "procesos",
+        "  proceso Contar(ES f: numero; ES p: numero)",
+        "  comenzar",
+        "    f := 0",
+        "    p := 0",
+        "    mientras HayFlorEnLaEsquina",
+        "      tomarFlor",
+        "      f := f + 1",
+        "    mientras HayPapelEnLaEsquina",
+        "      tomarPapel",
+        "      p := p + 1",
+        "    repetir f",
+        "      depositarFlor",
+        "    repetir p",
+        "      depositarPapel",
+        "  fin",
+        "  proceso Completar(E f: numero; E p: numero; ES ok: boolean)",
+        "  variables",
+        "    falta: numero",
+        "  comenzar",
+        "    si f <= p",
+        "      falta := p + 1 - f",
+        "      mientras (falta > 0) & HayFlorEnLaBolsa",
+        "        depositarFlor",
+        "        falta := falta - 1",
+        "    sino",
+        "      falta := f - 1 - p",
+        "      mientras (falta > 0) & HayPapelEnLaBolsa",
+        "        depositarPapel",
+        "        falta := falta - 1",
+        "    ok := falta = 0",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    completas: numero",
+        "    n: numero",
+        "    f: numero",
+        "    p: numero",
+        "    ok: boolean",
+        "  comenzar",
+        "    completas := 0",
+        "    n := 0",
+        "    ok := V",
+        "    Pos(9,1)",
+        "    mientras ok & (n < 100)",
+        "      Contar(f, p)",
+        "      Completar(f, p, ok)",
+        "      si ok",
+        "        completas := completas + 1",
+        "        n := n + 1",
+        "        si n < 100",
+        "          mover",
+        "    Informar(completas)",
+        "    si ~ok",
+        "      Pos(9,1)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Si hay más flores de las necesarias, se completan papeles. Para contar sin modificar la esquina, se junta todo y se vuelve a depositar."
+    },
+    {
+      "id": "c7-04",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Calles completadas con flores",
+      "tema": "parametrosES",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 25,
+      "enunciado": "Programe al robot para que recorra las calles de la ciudad. Por cada calle determine si debe depositar una flor o un papel en cada esquina, dependiendo de si el total de flores de la calle es mayor o igual que el total de papeles (deposita una flor por esquina) o un papel en caso contrario. Al terminar el recorrido de todas las calles debe informar cuántas calles fueron completadas con flores.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "flores": [
+              0,
+              1
+            ],
+            "papeles": [
+              0,
+              1
+            ],
+            "densidad": {
+              "flores": 0.1,
+              "papeles": 0.1
+            },
+            "bolsa": {
+              "flores": [
+                10000,
+                10000
+              ],
+              "papeles": [
+                10000,
+                10000
+              ]
+            }
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa",
+          "ciudad"
+        ],
+        "usa": {
+          "procesosMin": 2,
+          "parametros": [
+            "E",
+            "ES"
+          ]
+        }
+      },
+      "solucion": [
+        "programa Cap7Ej4",
+        "procesos",
+        "  proceso ContarCalle(ES f: numero; ES p: numero)",
+        "  variables",
+        "    k: numero",
+        "  comenzar",
+        "    f := 0",
+        "    p := 0",
+        "    repetir 100",
+        "      k := 0",
+        "      mientras HayFlorEnLaEsquina",
+        "        tomarFlor",
+        "        k := k + 1",
+        "      f := f + k",
+        "      repetir k",
+        "        depositarFlor",
+        "      k := 0",
+        "      mientras HayPapelEnLaEsquina",
+        "        tomarPapel",
+        "        k := k + 1",
+        "      p := p + k",
+        "      repetir k",
+        "        depositarPapel",
+        "      si PosAv < 100",
+        "        mover",
+        "  fin",
+        "  proceso DepositarCalle(E conFlor: boolean)",
+        "  comenzar",
+        "    repetir 100",
+        "      si conFlor",
+        "        depositarFlor",
+        "      sino",
+        "        depositarPapel",
+        "      si PosAv < 100",
+        "        mover",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    conFlores: numero",
+        "    c: numero",
+        "    f: numero",
+        "    p: numero",
+        "  comenzar",
+        "    conFlores := 0",
+        "    c := 1",
+        "    derecha",
+        "    repetir 100",
+        "      Pos(1,c)",
+        "      ContarCalle(f, p)",
+        "      Pos(1,c)",
+        "      DepositarCalle(f >= p)",
+        "      si f >= p",
+        "        conFlores := conFlores + 1",
+        "      c := c + 1",
+        "    Informar(conFlores)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Hacen falta dos pasadas por calle: una para contar (sin modificar) y otra para depositar. Se asume que la bolsa tiene suficientes flores y papeles."
+    },
+    {
+      "id": "c7-05",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Calles impares hasta una esquina no vacía",
+      "tema": "parametrosES",
+      "dificultad": 2,
+      "tiempoSugeridoMin": 15,
+      "enunciado": "Escriba un programa que le permita al robot recorrer las calles impares de la ciudad. Cada calle debe recorrerse sólo hasta encontrar una esquina con alguna flor o algún papel o ambos, que seguro existe. Al finalizar cada calle debe informar cuántos pasos dio hasta encontrar la esquina.",
+      "escenarios": [
+        {
+          "aleatorio": {
+            "zona": [
+              1,
+              1,
+              100,
+              100
+            ],
+            "flores": [
+              0,
+              1
+            ],
+            "papeles": [
+              0,
+              1
+            ],
+            "densidad": {
+              "flores": 0.03,
+              "papeles": 0.03
+            },
+            "restricciones": [
+              {
+                "zona": [
+                  1,
+                  1,
+                  100,
+                  1
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  3,
+                  100,
+                  3
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  5,
+                  100,
+                  5
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  7,
+                  100,
+                  7
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  9,
+                  100,
+                  9
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  11,
+                  100,
+                  11
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  13,
+                  100,
+                  13
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  15,
+                  100,
+                  15
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  17,
+                  100,
+                  17
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  19,
+                  100,
+                  19
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  21,
+                  100,
+                  21
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  23,
+                  100,
+                  23
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  25,
+                  100,
+                  25
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  27,
+                  100,
+                  27
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  29,
+                  100,
+                  29
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  31,
+                  100,
+                  31
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  33,
+                  100,
+                  33
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  35,
+                  100,
+                  35
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  37,
+                  100,
+                  37
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  39,
+                  100,
+                  39
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  41,
+                  100,
+                  41
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  43,
+                  100,
+                  43
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  45,
+                  100,
+                  45
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  47,
+                  100,
+                  47
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  49,
+                  100,
+                  49
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  51,
+                  100,
+                  51
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  53,
+                  100,
+                  53
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  55,
+                  100,
+                  55
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  57,
+                  100,
+                  57
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  59,
+                  100,
+                  59
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  61,
+                  100,
+                  61
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  63,
+                  100,
+                  63
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  65,
+                  100,
+                  65
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  67,
+                  100,
+                  67
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  69,
+                  100,
+                  69
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  71,
+                  100,
+                  71
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  73,
+                  100,
+                  73
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  75,
+                  100,
+                  75
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  77,
+                  100,
+                  77
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  79,
+                  100,
+                  79
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  81,
+                  100,
+                  81
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  83,
+                  100,
+                  83
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  85,
+                  100,
+                  85
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  87,
+                  100,
+                  87
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  89,
+                  100,
+                  89
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  91,
+                  100,
+                  91
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  93,
+                  100,
+                  93
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  95,
+                  100,
+                  95
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  97,
+                  100,
+                  97
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              },
+              {
+                "zona": [
+                  1,
+                  99,
+                  100,
+                  99
+                ],
+                "totalFlores": {
+                  "min": 1
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "informa"
+        ],
+        "usa": {
+          "procesosMin": 1,
+          "parametros": [
+            "ES"
+          ]
+        }
+      },
+      "solucion": [
+        "programa Cap7Ej5",
+        "procesos",
+        "  proceso Buscar(ES pasos: numero)",
+        "  comenzar",
+        "    pasos := 0",
+        "    mientras ~(HayFlorEnLaEsquina | HayPapelEnLaEsquina)",
+        "      mover",
+        "      pasos := pasos + 1",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    c: numero",
+        "    pasos: numero",
+        "  comenzar",
+        "    c := 1",
+        "    derecha",
+        "    repetir 50",
+        "      Pos(1,c)",
+        "      Buscar(pasos)",
+        "      Informar(pasos)",
+        "      c := c + 2",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ]
+    },
+    {
+      "id": "c7-06",
+      "modulo": "practicar",
+      "tipo": "programa",
+      "titulo": "Cuadrados decrecientes hasta 3 flores y 2 papeles",
+      "tema": "parametrosES",
+      "dificultad": 3,
+      "tiempoSugeridoMin": 25,
+      "enunciado": "Escriba un programa que le permita al robot recorrer cuadrados hasta encontrar un cuadrado con exactamente 3 flores y 2 papeles (seguro existe). El primer cuadrado es de lado 99 y los siguientes van decrementando en uno el tamaño del lado (98, 97 y así sucesivamente). Todos empiezan en (1,1).",
+      "escenarios": [
+        {
+          "nombre": "el de lado 50",
+          "flores": [
+            [
+              51,
+              10,
+              1
+            ],
+            [
+              51,
+              20,
+              2
+            ],
+            [
+              71,
+              30,
+              3
+            ]
+          ],
+          "papeles": [
+            [
+              51,
+              30,
+              2
+            ],
+            [
+              30,
+              71,
+              1
+            ]
+          ]
+        },
+        {
+          "nombre": "el de lado 97",
+          "flores": [
+            [
+              98,
+              5,
+              3
+            ]
+          ],
+          "papeles": [
+            [
+              98,
+              6,
+              1
+            ],
+            [
+              60,
+              98,
+              1
+            ]
+          ]
+        }
+      ],
+      "validaciones": {
+        "compararConReferencia": [
+          "recorrido"
+        ],
+        "usa": {
+          "procesosMin": 1,
+          "parametros": [
+            "E",
+            "ES"
+          ]
+        }
+      },
+      "solucion": [
+        "programa Cap7Ej6",
+        "procesos",
+        "  proceso ContarEsquina(ES f: numero; ES p: numero)",
+        "  variables",
+        "    k: numero",
+        "  comenzar",
+        "    k := 0",
+        "    mientras HayFlorEnLaEsquina",
+        "      tomarFlor",
+        "      k := k + 1",
+        "    f := f + k",
+        "    repetir k",
+        "      depositarFlor",
+        "    k := 0",
+        "    mientras HayPapelEnLaEsquina",
+        "      tomarPapel",
+        "      k := k + 1",
+        "    p := p + k",
+        "    repetir k",
+        "      depositarPapel",
+        "  fin",
+        "  proceso Cuadrado(E lado: numero; ES f: numero; ES p: numero)",
+        "  comenzar",
+        "    f := 0",
+        "    p := 0",
+        "    repetir 4",
+        "      repetir lado",
+        "        ContarEsquina(f, p)",
+        "        mover",
+        "      derecha",
+        "  fin",
+        "areas",
+        "  ciudad: AreaC(1,1,100,100)",
+        "robots",
+        "  robot robot1",
+        "  variables",
+        "    lado: numero",
+        "    f: numero",
+        "    p: numero",
+        "  comenzar",
+        "    lado := 99",
+        "    Cuadrado(lado, f, p)",
+        "    mientras ~((f = 3) & (p = 2))",
+        "      lado := lado - 1",
+        "      Cuadrado(lado, f, p)",
+        "  fin",
+        "variables",
+        "  R-info: robot1",
+        "comenzar",
+        "  AsignarArea(R-info,ciudad)",
+        "  Iniciar(R-info,1,1)",
+        "fin"
+      ],
+      "notas": "Como todos los cuadrados comparten la avenida 1 y la calle 1, hay que contar sin modificar las esquinas: si no, los cuadrados siguientes cuentan mal."
+    }
+  ]
+}

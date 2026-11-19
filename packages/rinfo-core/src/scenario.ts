@@ -48,6 +48,14 @@ function cumplir(ciudad: Ciudad, r: Restriccion, rnd: () => number, maxPorEsquin
     }
   };
   vacias('papeles', r.esquinasSinPapel);
+  if (r.esquinasVacias?.min) {
+    const vacia = ([a, c]: [number, number]) => ciudad.get(a, c).flores === 0 && ciudad.get(a, c).papeles === 0;
+    let n = zona.filter(vacia).length;
+    while (n < r.esquinasVacias.min) {
+      const e = zona[Math.floor(rnd() * zona.length)];
+      if (!vacia(e)) { ciudad.set(e[0], e[1], { flores: 0, papeles: 0 }); n++; }
+    }
+  }
   vacias('flores', r.esquinasSinFlor);
 }
 
@@ -57,11 +65,11 @@ export function construirEscenario(e: Escenario, semilla: number): { ciudad: Ciu
   const bolsa: Bolsa = { flores: 0, papeles: 0 };
   const al = e.aleatorio;
   if (al) {
+    const df = al.densidad?.flores ?? 1, dp = al.densidad?.papeles ?? 1;
     for (const [a, c] of esquinas(al.zona)) {
-      ciudad.set(a, c, {
-        flores: al.flores ? entre(rnd, al.flores) : 0,
-        papeles: al.papeles ? entre(rnd, al.papeles) : 0,
-      });
+      const f = al.flores ? entre(rnd, al.flores) : 0;
+      const p = al.papeles ? entre(rnd, al.papeles) : 0;
+      ciudad.set(a, c, { flores: rnd() < df ? f : 0, papeles: rnd() < dp ? p : 0 });
     }
     for (const r of al.restricciones ?? []) {
       cumplir(ciudad, r, rnd, { flores: al.flores?.[1] ?? 1, papeles: al.papeles?.[1] ?? 1 });

@@ -8,4 +8,5 @@ export { Ciudad } from './city';
 export { Ejecucion, LIMITE_PASOS, type Resultado, type Paso, type EstadoRobot } from './runtime';
 export { construirEscenario } from './scenario';
 export { compilar, ejecutar, corregir, respuestasQueHace, type Correccion, type ResultadoEscenario } from './grader';
+export type { Bolsa, Contenido } from './city';
 export { EJERCICIOS, CAPITULOS } from './catalogo';

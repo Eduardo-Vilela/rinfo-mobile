@@ -6,6 +6,7 @@ import { EJERCICIOS, type Correccion, type Ejercicio, type EjercicioPrograma } f
 import { Inicio, type Modulo } from './src/screens/Inicio';
 import { Programa } from './src/screens/Programa';
 import { QueHace } from './src/screens/QueHace';
+import { VerdaderoFalso } from './src/screens/VerdaderoFalso';
 import { Resultado } from './src/screens/Resultado';
 import { marcarResuelto } from './src/storage';
 import { color } from './src/theme';
@@ -13,6 +14,7 @@ import { color } from './src/theme';
 type Pantalla =
   | { p: 'inicio' }
   | { p: 'queHace'; e: Extract<Ejercicio, { tipo: 'queHace' }> }
+  | { p: 'vf'; e: Extract<Ejercicio, { tipo: 'verdaderoFalso' }> }
   | { p: 'programa'; cola: EjercicioPrograma[]; k: number; examen: boolean; intento: number }
   | { p: 'resultado'; cola: EjercicioPrograma[]; k: number; examen: boolean; correccion: Correccion; codigo: string };
 
@@ -34,10 +36,15 @@ export default function App() {
 
   function abrir(e: Ejercicio, m: Modulo) {
     if (e.tipo === 'queHace') setPantalla({ p: 'queHace', e });
+    else if (e.tipo === 'verdaderoFalso') setPantalla({ p: 'vf', e });
     else setPantalla({ p: 'programa', cola: [e], k: 0, examen: m === 'examen', intento: 0 });
   }
   function simulacro() {
-    const lista = programas().filter((e) => e.dificultad >= 2).sort(() => Math.random() - 0.5).slice(0, 2);
+    // Un simulacro arma dos ejercicios al azar, priorizando los de tipo examen.
+    const examen = programas().filter((e) => e.modulo === 'examen');
+    const resto = programas().filter((e) => e.modulo !== 'examen' && e.dificultad >= 2);
+    const azar = <T,>(xs: T[]) => [...xs].sort(() => Math.random() - 0.5);
+    const lista = [...azar(examen).slice(0, 1), ...azar(resto).slice(0, 1)];
     setPantalla({ p: 'programa', cola: lista, k: 0, examen: true, intento: 0 });
   }
 
@@ -48,6 +55,9 @@ export default function App() {
       break;
     case 'queHace':
       contenido = <QueHace ejercicio={pantalla.e} onVolver={inicio} />;
+      break;
+    case 'vf':
+      contenido = <VerdaderoFalso ejercicio={pantalla.e} onVolver={inicio} />;
       break;
     case 'programa': {
       const { cola, k, examen, intento } = pantalla;

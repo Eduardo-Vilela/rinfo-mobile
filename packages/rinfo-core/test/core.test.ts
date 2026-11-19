@@ -149,14 +149,14 @@ fin`;
 describe('¿Qué hace?', () => {
   it('queHace1 se detiene en (6,2) con una flor por esquina', () => {
     const e = EJERCICIOS.find((x) => x.id === 'c3-01a') as EjercicioQueHace;
-    const r = respuestasQueHace(e.programa, e.escenarios);
+    const r = respuestasQueHace(e.programa, e.escenarios).respuestas;
     expect(r[0].resultado.posicionFinal).toEqual([6, 2]);
     expect(r[1].resultado.posicionFinal).toEqual([6, 100]);
     expect(r[2].resultado.posicionFinal).toEqual([6, 1]);
   });
   it('queHace2 informa 0 o 10', () => {
     const e = EJERCICIOS.find((x) => x.id === 'c3-01b') as EjercicioQueHace;
-    const r = respuestasQueHace(e.programa, e.escenarios);
+    const r = respuestasQueHace(e.programa, e.escenarios).respuestas;
     expect(r.map((x) => x.resultado.informes[0])).toEqual(['0', '10', '10', '10']);
   });
 });

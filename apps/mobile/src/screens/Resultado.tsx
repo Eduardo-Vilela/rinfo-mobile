@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import type { Correccion, EjercicioPrograma } from 'rinfo-core';
+import { useMemo, useState } from 'react';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { compilar, type Correccion, type EjercicioPrograma } from 'rinfo-core';
+import { Ciudad } from '../components/Ciudad';
 import { Boton, CodigoNumerado, Encabezado, s as ui } from '../components/ui';
 import { color, espacio } from '../theme';
 
@@ -13,6 +14,8 @@ export function Resultado({ ejercicio, correccion, codigo, onVolver, onReintenta
   siguiente?: () => void;
 }) {
   const [verSolucion, setVerSolucion] = useState(false);
+  const [abierto, setAbierto] = useState<number | null>(null);
+  const programa = useMemo(() => (correccion.estado === 'corregido' ? compilar(codigo).programa : undefined), [codigo, correccion.estado]);
   const aprobado = correccion.estado === 'corregido' && correccion.aprobado;
   const lineasConError = correccion.estado === 'no-compila' ? correccion.errores.map((e) => e.linea) : [];
   const resumen =
@@ -41,13 +44,19 @@ export function Resultado({ ejercicio, correccion, codigo, onVolver, onReintenta
             {correccion.requisitos.map((r, i) => (
               <View key={i} style={st.item}><Text style={ui.texto}>{r}</Text></View>
             ))}
+            <Text style={ui.suave}>Tocá una ciudad para ver el recorrido de tu programa.</Text>
             {correccion.escenarios.map((esc, i) => (
-              <View key={i} style={st.item}>
+              <Pressable key={i} style={st.item} onPress={() => setAbierto(abierto === i ? null : i)}>
                 <Text style={[st.itemLinea, { color: esc.aprobado ? color.bien : color.mal }]}>
                   {esc.aprobado ? '✓' : '✗'}  {esc.nombre}
                 </Text>
                 {esc.diferencias.map((d, k) => <Text key={k} style={ui.texto}>{d}</Text>)}
-              </View>
+                {abierto === i && programa ? (
+                  <View style={{ marginTop: espacio(2) }}>
+                    <Ciudad programa={programa} escenario={esc.escenario} semilla={esc.semilla} />
+                  </View>
+                ) : null}
+              </Pressable>
             ))}
           </View>
         )}
