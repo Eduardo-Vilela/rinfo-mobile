@@ -23,7 +23,11 @@ packages/rinfo-core   Intérprete de R-Info en TypeScript (sin dependencias)
   src/scenario.ts     Ciudades de prueba fijas y al azar
   src/grader.ts       Corrige comparando contra la solución de referencia
   ejercicios/*.json   Ejercicios (formato en src/types.ts)
-apps/mobile           App Expo (React Native)
+apps/mobile           App Expo (React Native) con Expo Router
+  src/app/            Rutas: (tabs)/index · practicar · examen, leccion/[id],
+                      actividad/[id], ejercicio/[id] y resultado
+  src/screens/        Pantallas (las rutas les pasan los datos)
+  src/components/     Mapa de la ciudad, UI y contenedor de pantalla
 ```
 
 ## Desarrollo

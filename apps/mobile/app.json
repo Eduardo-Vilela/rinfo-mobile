@@ -24,6 +24,12 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "scheme": "rinfo"
+    "scheme": "rinfo",
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
   }
 }

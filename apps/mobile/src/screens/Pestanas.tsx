@@ -1,55 +1,63 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useEffect, useState } from 'react';
+import { router, useFocusEffect } from 'expo-router';
+import { useCallback, useState, type ReactNode } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { CAPITULOS, EJERCICIOS, LECCIONES, type Ejercicio, type EjercicioPrograma, type Leccion } from 'rinfo-core';
-import { BarraProgreso, Boton, Chip, Encabezado, s as ui, Tarjeta, type Icono } from '../components/ui';
+import { Pantalla } from '../components/Pantalla';
+import { BarraProgreso, Boton, Chip, Encabezado, s as ui, Tarjeta } from '../components/ui';
 import { leerLecciones, leerResueltos } from '../storage';
 import { color, espacio, radio } from '../theme';
 
 export type Modulo = 'aprender' | 'practicar' | 'examen';
 
-const PESTANAS: { id: Modulo; titulo: string; icono: Icono; iconoActivo: Icono }[] = [
-  { id: 'aprender', titulo: 'Aprender', icono: 'school-outline', iconoActivo: 'school' },
-  { id: 'practicar', titulo: 'Practicar', icono: 'code-slash-outline', iconoActivo: 'code-slash' },
-  { id: 'examen', titulo: 'Examen', icono: 'timer-outline', iconoActivo: 'timer' },
-];
-
-export function Inicio({ modulo, setModulo, abrirLeccion, abrir, simulacro }: {
-  modulo: Modulo;
-  setModulo: (m: Modulo) => void;
-  abrirLeccion: (l: Leccion) => void;
-  abrir: (e: Ejercicio, m: Modulo) => void;
-  simulacro: () => void;
-}) {
+/** Progreso guardado, releído cada vez que la pestaña vuelve a estar en foco. */
+function useProgreso() {
   const [resueltos, setResueltos] = useState<Set<string>>(new Set());
   const [lecciones, setLecciones] = useState<Set<string>>(new Set());
-  useEffect(() => {
-    leerResueltos().then(setResueltos);
-    leerLecciones().then(setLecciones);
-  }, [modulo]);
-
-  return (
-    <View style={{ flex: 1 }}>
-      <ScrollView contentContainerStyle={{ paddingBottom: espacio(8) }}>
-        {modulo === 'aprender' && <Aprender lecciones={lecciones} resueltos={resueltos} abrirLeccion={abrirLeccion} />}
-        {modulo === 'practicar' && <Practicar resueltos={resueltos} abrir={(e) => abrir(e, 'practicar')} />}
-        {modulo === 'examen' && <Examen resueltos={resueltos} abrir={(e) => abrir(e, 'examen')} simulacro={simulacro} />}
-      </ScrollView>
-      <View style={st.pestanas}>
-        {PESTANAS.map((p) => {
-          const activa = p.id === modulo;
-          return (
-            <Pressable key={p.id} onPress={() => setModulo(p.id)} style={st.pestana} accessibilityRole="tab" accessibilityState={{ selected: activa }}>
-              <View style={[st.pestanaIcono, activa && { backgroundColor: color.acentoSuave }]}>
-                <Ionicons name={activa ? p.iconoActivo : p.icono} size={22} color={activa ? color.acentoTexto : color.suave} />
-              </View>
-              <Text style={[st.pestanaTexto, activa && { color: color.acentoTexto }]}>{p.titulo}</Text>
-            </Pressable>
-          );
-        })}
-      </View>
-    </View>
+  useFocusEffect(
+    useCallback(() => {
+      leerResueltos().then(setResueltos);
+      leerLecciones().then(setLecciones);
+    }, []),
   );
+  return { resueltos, lecciones };
+}
+
+const abrirLeccion = (l: Leccion) => router.push({ pathname: '/leccion/[id]', params: { id: l.id } });
+const abrirEjercicio = (e: Ejercicio, examen = false) =>
+  e.tipo === 'programa'
+    ? router.push({ pathname: '/ejercicio/[id]', params: { id: e.id, examen: examen ? '1' : '0' } })
+    : router.push({ pathname: '/actividad/[id]', params: { id: e.id } });
+
+function Lista({ children }: { children: ReactNode }) {
+  return (
+    <Pantalla bordes={['top']}>
+      <ScrollView contentContainerStyle={{ paddingBottom: espacio(8) }}>{children}</ScrollView>
+    </Pantalla>
+  );
+}
+
+export function PestanaAprender() {
+  const { resueltos, lecciones } = useProgreso();
+  return <Lista><Aprender lecciones={lecciones} resueltos={resueltos} abrirLeccion={abrirLeccion} /></Lista>;
+}
+export function PestanaPracticar() {
+  const { resueltos } = useProgreso();
+  return <Lista><Practicar resueltos={resueltos} abrir={(e) => abrirEjercicio(e)} /></Lista>;
+}
+export function PestanaExamen() {
+  const { resueltos } = useProgreso();
+  return <Lista><Examen resueltos={resueltos} abrir={(e) => abrirEjercicio(e, true)} simulacro={simulacro} /></Lista>;
+}
+
+const azar = <T,>(xs: T[]) => [...xs].sort(() => Math.random() - 0.5);
+/** Un ejercicio de tipo examen y otro de práctica de nivel 2 o más. */
+function simulacro() {
+  const programas = EJERCICIOS.filter((e): e is EjercicioPrograma => e.tipo === 'programa');
+  const examen = programas.filter((e) => e.modulo === 'examen');
+  const resto = programas.filter((e) => e.modulo !== 'examen' && e.dificultad >= 2);
+  const cola = [...azar(examen).slice(0, 1), ...azar(resto).slice(0, 1)].map((e) => e.id);
+  router.push({ pathname: '/ejercicio/[id]', params: { id: cola[0], examen: '1', cola: cola.join(','), k: '0' } });
 }
 
 function Aprender({ lecciones, resueltos, abrirLeccion }: { lecciones: Set<string>; resueltos: Set<string>; abrirLeccion: (l: Leccion) => void }) {
@@ -183,8 +191,4 @@ const st = StyleSheet.create({
   heroeTexto: { fontSize: 14, lineHeight: 20, color: '#E0E3FF' },
   heroeBoton: { marginTop: espacio(2), alignSelf: 'flex-start', flexDirection: 'row', alignItems: 'center', gap: espacio(2), backgroundColor: '#FFFFFF', paddingHorizontal: espacio(5), paddingVertical: espacio(3), borderRadius: radio.md },
   heroeBotonTexto: { fontSize: 15, fontWeight: '700', color: color.acentoTexto },
-  pestanas: { flexDirection: 'row', backgroundColor: color.tarjeta, borderTopWidth: StyleSheet.hairlineWidth, borderColor: color.borde, paddingTop: espacio(2), paddingBottom: espacio(1) },
-  pestana: { flex: 1, alignItems: 'center', gap: 2 },
-  pestanaIcono: { paddingHorizontal: espacio(5), paddingVertical: 4, borderRadius: 999 },
-  pestanaTexto: { fontSize: 12, fontWeight: '600', color: color.suave },
 });

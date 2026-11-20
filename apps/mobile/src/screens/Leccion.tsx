@@ -7,8 +7,8 @@ import { BarraInferior, BarraProgreso, Boton, BotonIcono, Chip, CodigoNumerado, 
 import { marcarLeccion } from '../storage';
 import { color, espacio, radio } from '../theme';
 
-export function Leccion({ leccion, onVolver, abrir, alFinal }: { leccion: TLeccion; onVolver: () => void; abrir: (e: Ejercicio) => void; alFinal?: boolean }) {
-  const [i, setI] = useState(alFinal ? leccion.secciones.length : 0);
+export function Leccion({ leccion, onVolver, abrir }: { leccion: TLeccion; onVolver: () => void; abrir: (e: Ejercicio) => void }) {
+  const [i, setI] = useState(0);
   const [listas, setListas] = useState<Set<number>>(new Set());
   const scroll = useRef<ScrollViewInstance>(null);
   const total = leccion.secciones.length;
