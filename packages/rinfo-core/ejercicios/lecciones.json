@@ -1,0 +1,1243 @@
+{
+  "version": 1,
+  "lecciones": [
+    {
+      "id": "l0",
+      "capitulo": 0,
+      "titulo": "El robot y su ciudad",
+      "minutos": 5,
+      "resumen": "Qué vas a aprender en el curso y cómo es el mundo donde vive el robot.",
+      "secciones": [
+        {
+          "tipo": "concepto",
+          "titulo": "Qué vas a aprender",
+          "texto": [
+            "El curso enseña un método para resolver problemas con una computadora: primero entender bien el problema, después pensar una solución clara paso a paso y recién al final escribirla en un lenguaje de programación.",
+            "Para practicar se usa R-Info: un robot que se mueve por una ciudad y obedece órdenes muy simples. Lo importante no es el robot, sino aprender a pensar la solución antes de escribirla."
+          ]
+        },
+        {
+          "tipo": "concepto",
+          "titulo": "La ciudad",
+          "texto": [
+            "La ciudad tiene **100 avenidas** verticales, numeradas de 1 a 100 de oeste a este, y **100 calles** horizontales, numeradas de 1 a 100 de sur a norte.",
+            "Cada esquina se nombra con dos números: primero la avenida y después la calle. **(3,7)** es la esquina de la avenida 3 y la calle 7.",
+            "En las esquinas puede haber **flores** y **papeles**. El robot tiene una **bolsa** donde guarda lo que junta y de donde saca lo que deposita.",
+            "Al empezar, el robot está en **(1,1)**, la esquina de abajo a la izquierda, y mira al **norte**."
+          ]
+        },
+        {
+          "tipo": "pregunta",
+          "pregunta": "El robot está en (1,1) mirando al norte y avanza una cuadra. ¿En qué esquina queda?",
+          "opciones": [
+            "(2,1)",
+            "(1,2)",
+            "(0,1)"
+          ],
+          "correcta": 1,
+          "explicacion": "Mirando al norte sube por la avenida: la avenida sigue siendo la 1 y la calle pasa de 1 a 2."
+        },
+        {
+          "tipo": "ejemplo",
+          "titulo": "Tus primeras órdenes",
+          "problema": "Llevar al robot desde (1,1) hasta (1,4) y juntar la flor que hay en esa esquina.",
+          "pasos": [
+            {
+              "texto": "Avanzar tres cuadras hacia el norte.",
+              "lineas": [
+                7,
+                9
+              ]
+            },
+            {
+              "texto": "Tomar la flor.",
+              "lineas": [
+                10,
+                10
+              ]
+            }
+          ],
+          "programa": [
+            "programa PrimerosPasos",
+            "areas",
+            "  ciudad: AreaC(1,1,100,100)",
+            "robots",
+            "  robot robot1",
+            "  comenzar",
+            "    mover",
+            "    mover",
+            "    mover",
+            "    tomarFlor",
+            "  fin",
+            "variables",
+            "  R-info: robot1",
+            "comenzar",
+            "  AsignarArea(R-info,ciudad)",
+            "  Iniciar(R-info,1,1)",
+            "fin"
+          ],
+          "escenario": {
+            "flores": [
+              [
+                1,
+                4,
+                1
+              ],
+              [
+                2,
+                6,
+                2
+              ]
+            ],
+            "papeles": [
+              [
+                3,
+                3,
+                1
+              ]
+            ]
+          },
+          "cierre": "Mirá el mapa: el robot sube por la avenida 1 y en (1,4) la flor desaparece de la esquina porque pasa a su bolsa."
+        },
+        {
+          "tipo": "pregunta",
+          "pregunta": "El robot mira al norte y gira a la derecha dos veces. ¿Hacia dónde mira ahora?",
+          "opciones": [
+            "Este",
+            "Sur",
+            "Oeste"
+          ],
+          "correcta": 1,
+          "explicacion": "Cada derecha gira un cuarto de vuelta en el sentido de las agujas del reloj: norte, este, sur. El robot no tiene 'izquierda': para mirar al oeste desde el norte hay que girar tres veces."
+        }
+      ],
+      "actividades": []
+    },
+    {
+      "id": "l1",
+      "capitulo": 1,
+      "titulo": "Resolver problemas",
+      "minutos": 8,
+      "resumen": "Qué es un algoritmo y las cuatro formas de ordenar sus pasos.",
+      "secciones": [
+        {
+          "tipo": "concepto",
+          "titulo": "Las etapas",
+          "texto": [
+            "Resolver un problema con una computadora no es solo escribir un programa. Se pasa por varias etapas: **analizar** el problema (qué datos hay y qué hay que lograr), **diseñar** la solución, escribir el **algoritmo**, pasarlo a un **programa** y **verificar** que funcione.",
+            "Si en una etapa encontrás un error, volvés a la anterior. Por eso conviene pensar la solución en castellano antes de escribir código."
+          ]
+        },
+        {
+          "tipo": "concepto",
+          "titulo": "Qué es un algoritmo",
+          "texto": [
+            "Un algoritmo es una lista **finita** de pasos **precisos** que resuelve un problema. Cada paso tiene que significar una sola cosa: \"ponerle algo de sal\" es ambiguo, \"agregar una cucharadita de sal\" no lo es. Y tiene que **terminar**.",
+            "La **precondición** es lo que suponés que vale antes de empezar (por ejemplo, \"hay al menos una flor en la esquina\"). La **postcondición** es lo que tiene que valer al terminar (\"la esquina quedó sin flores\")."
+          ]
+        },
+        {
+          "tipo": "pregunta",
+          "pregunta": "¿Cuál de estos pasos sirve para un algoritmo?",
+          "opciones": [
+            "Caminar un poco hacia el norte.",
+            "Caminar 3 cuadras hacia el norte.",
+            "Caminar hasta que te canses."
+          ],
+          "correcta": 1,
+          "explicacion": "Es el único preciso: dice exactamente cuántas cuadras y hacia dónde. Los otros dos se pueden interpretar de muchas formas."
+        },
+        {
+          "tipo": "concepto",
+          "titulo": "Las cuatro estructuras",
+          "texto": [
+            "Todos los algoritmos se arman combinando cuatro formas de ordenar los pasos:",
+            "**Secuencia**: un paso detrás de otro.",
+            "**Selección** (`si … sino`): hacer algo solo si se cumple una condición.",
+            "**Repetición** (`repetir N`): hacer algo una cantidad de veces que conocés de antemano.",
+            "**Iteración** (`mientras condición`): hacer algo mientras se cumpla una condición, sin saber cuántas veces va a ser.",
+            "La **sangría** marca qué pasos están adentro de cada estructura. No es decoración: cambia lo que hace el algoritmo."
+          ]
+        },
+        {
+          "tipo": "pregunta",
+          "pregunta": "Hay que avanzar por una avenida hasta encontrar una flor, y no sabés en qué esquina está. ¿Qué estructura usás?",
+          "opciones": [
+            "Repetición (repetir)",
+            "Iteración (mientras)",
+            "Selección (si)"
+          ],
+          "correcta": 1,
+          "explicacion": "No sabés cuántas cuadras vas a caminar, así que repetir una cantidad fija no sirve. Iterás mientras no haya flor."
+        },
+        {
+          "tipo": "ejemplo",
+          "titulo": "Separar la lógica del código",
+          "problema": "Juntar todas las flores de la esquina (5,3). No sabemos cuántas hay.",
+          "pasos": [
+            {
+              "texto": "Ir a la esquina (5,3).",
+              "lineas": [
+                7,
+                7
+              ]
+            },
+            {
+              "texto": "Mientras haya una flor en la esquina…",
+              "lineas": [
+                8,
+                8
+              ]
+            },
+            {
+              "texto": "…tomar una flor.",
+              "lineas": [
+                9,
+                9
+              ]
+            }
+          ],
+          "programa": [
+            "programa JuntarFlores",
+            "areas",
+            "  ciudad: AreaC(1,1,100,100)",
+            "robots",
+            "  robot robot1",
+            "  comenzar",
+            "    Pos(5,3)",
+            "    mientras HayFlorEnLaEsquina",
+            "      tomarFlor",
+            "  fin",
+            "variables",
+            "  R-info: robot1",
+            "comenzar",
+            "  AsignarArea(R-info,ciudad)",
+            "  Iniciar(R-info,1,1)",
+            "fin"
+          ],
+          "escenario": {
+            "flores": [
+              [
+                5,
+                3,
+                4
+              ],
+              [
+                2,
+                2,
+                1
+              ]
+            ]
+          },
+          "cierre": "Primero escribimos los pasos en castellano y recién después cada paso se volvió una línea de código. Tocá un paso para ver qué líneas lo resuelven."
+        },
+        {
+          "tipo": "pregunta",
+          "pregunta": "Un algoritmo dice solamente: \"tomar la flor de la esquina\". ¿Qué precondición necesita?",
+          "opciones": [
+            "Que la bolsa esté vacía.",
+            "Que haya al menos una flor en la esquina.",
+            "Que el robot mire al norte."
+          ],
+          "correcta": 1,
+          "explicacion": "Si la esquina no tiene flores, el robot no puede tomar ninguna y el programa termina con error."
+        }
+      ],
+      "actividades": []
+    },
+    {
+      "id": "l2",
+      "capitulo": 2,
+      "titulo": "El lenguaje del robot",
+      "minutos": 10,
+      "resumen": "Instrucciones, estructura de un programa y condiciones lógicas.",
+      "secciones": [
+        {
+          "tipo": "concepto",
+          "titulo": "Lo que el robot sabe hacer",
+          "texto": [
+            "**Acciones**: `mover` (avanza una cuadra hacia donde mira), `derecha` (gira 90°), `tomarFlor`, `tomarPapel`, `depositarFlor`, `depositarPapel`, `Pos(av, ca)` (salta a una esquina sin cambiar hacia dónde mira) e `Informar(valor)` (muestra un resultado).",
+            "**Preguntas** que devuelven verdadero o falso: `HayFlorEnLaEsquina`, `HayPapelEnLaEsquina`, `HayFlorEnLaBolsa`, `HayPapelEnLaBolsa`. Y dos números: `PosAv` y `PosCa`, la avenida y la calle donde está.",
+            "Fijate en las mayúsculas: el lenguaje las distingue. `tomarflor` no es `tomarFlor`."
+          ]
+        },
+        {
+          "tipo": "concepto",
+          "titulo": "La forma de un programa",
+          "texto": [
+            "Todo programa tiene las mismas secciones, siempre en este orden. Cada nivel de sangría son **2 espacios**:"
+          ],
+          "codigo": [
+            "programa Nombre",
+            "areas",
+            "  ciudad: AreaC(1,1,100,100)",
+            "robots",
+            "  robot robot1",
+            "  comenzar",
+            "    { acá van las instrucciones }",
+            "  fin",
+            "variables",
+            "  R-info: robot1",
+            "comenzar",
+            "  AsignarArea(R-info,ciudad)",
+            "  Iniciar(R-info,1,1)",
+            "fin"
+          ]
+        },
+        {
+          "tipo": "concepto",
+          "titulo": "Condiciones lógicas",
+          "texto": [
+            "Una proposición **atómica** es una pregunta simple que vale V o F, como `HayFlorEnLaEsquina`.",
+            "Con conectivos se arman proposiciones **moleculares**: `&` (y) es V solo si las dos lo son; `|` (o) es V si al menos una lo es; `~` (no) invierte el valor.",
+            "Los paréntesis deciden qué se evalúa primero: `~(HayFlorEnLaEsquina | HayPapelEnLaEsquina)` es V solo en una esquina vacía."
+          ]
+        },
+        {
+          "tipo": "pregunta",
+          "pregunta": "En una esquina hay una flor y ningún papel. ¿Cuánto vale `HayFlorEnLaEsquina & ~HayPapelEnLaEsquina`?",
+          "opciones": [
+            "V",
+            "F"
+          ],
+          "correcta": 0,
+          "explicacion": "HayFlorEnLaEsquina es V. HayPapelEnLaEsquina es F, así que ~HayPapelEnLaEsquina es V. V & V = V."
+        },
+        {
+          "tipo": "pregunta",
+          "pregunta": "En una esquina hay solo un papel. ¿Cuánto vale `~(HayFlorEnLaEsquina | HayPapelEnLaEsquina)`?",
+          "opciones": [
+            "V",
+            "F"
+          ],
+          "correcta": 1,
+          "explicacion": "Adentro del paréntesis: F | V = V. Negado: F. Esta condición solo es verdadera en una esquina vacía."
+        },
+        {
+          "tipo": "ejemplo",
+          "titulo": "Recorrer juntando",
+          "problema": "Recorrer la avenida 2 desde la calle 1 hasta la calle 8 juntando todas las flores.",
+          "pasos": [
+            {
+              "texto": "Ir al comienzo de la avenida 2.",
+              "lineas": [
+                7,
+                7
+              ]
+            },
+            {
+              "texto": "En cada una de las primeras 7 esquinas: juntar todas las flores…",
+              "lineas": [
+                8,
+                10
+              ]
+            },
+            {
+              "texto": "…y avanzar una cuadra.",
+              "lineas": [
+                11,
+                11
+              ]
+            },
+            {
+              "texto": "En la última esquina, juntar también.",
+              "lineas": [
+                12,
+                13
+              ]
+            }
+          ],
+          "programa": [
+            "programa RecorrerAvenida",
+            "areas",
+            "  ciudad: AreaC(1,1,100,100)",
+            "robots",
+            "  robot robot1",
+            "  comenzar",
+            "    Pos(2,1)",
+            "    repetir 7",
+            "      mientras HayFlorEnLaEsquina",
+            "        tomarFlor",
+            "      mover",
+            "    mientras HayFlorEnLaEsquina",
+            "      tomarFlor",
+            "  fin",
+            "variables",
+            "  R-info: robot1",
+            "comenzar",
+            "  AsignarArea(R-info,ciudad)",
+            "  Iniciar(R-info,1,1)",
+            "fin"
+          ],
+          "escenario": {
+            "flores": [
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                3,
+                2
+              ],
+              [
+                2,
+                6,
+                1
+              ],
+              [
+                2,
+                8,
+                3
+              ],
+              [
+                3,
+                4,
+                1
+              ]
+            ],
+            "papeles": [
+              [
+                2,
+                5,
+                1
+              ]
+            ]
+          },
+          "cierre": "De la calle 1 a la 8 hay 8 esquinas pero solo 7 cuadras. Por eso el repetir hace 7 veces 'juntar y avanzar' y la última esquina se junta aparte: es el error más común."
+        },
+        {
+          "tipo": "pregunta",
+          "pregunta": "¿Qué tiene mal este fragmento?",
+          "opciones": [
+            "Le falta un paréntesis.",
+            "La instrucción de adentro no tiene sangría.",
+            "mientras no existe en el lenguaje."
+          ],
+          "correcta": 1,
+          "explicacion": "La línea de tomarFlor tiene que estar 2 espacios más adentro que el mientras: así se sabe que es parte de la iteración.",
+          "programa": [
+            "mientras HayFlorEnLaEsquina",
+            "tomarFlor"
+          ]
+        },
+        {
+          "tipo": "pregunta",
+          "pregunta": "El robot mira al norte y ejecuta `repetir 3` con `derecha` adentro. ¿Hacia dónde queda mirando?",
+          "opciones": [
+            "Sur",
+            "Oeste",
+            "Este"
+          ],
+          "correcta": 1,
+          "explicacion": "Norte → este → sur → oeste. Tres derechas equivalen a una izquierda."
+        }
+      ],
+      "actividades": []
+    },
+    {
+      "id": "l3",
+      "capitulo": 3,
+      "titulo": "Datos y variables",
+      "minutos": 10,
+      "resumen": "Guardar información para contar, comparar e informar.",
+      "secciones": [
+        {
+          "tipo": "concepto",
+          "titulo": "Variables",
+          "texto": [
+            "Una **variable** es un lugar con nombre donde el robot guarda un dato que puede cambiar. Se declara en la sección `variables` del robot, con su tipo:",
+            "`numero` para cantidades enteras y `boolean` para V o F.",
+            "Se le da un valor con `:=`. Antes de usarla hay que **inicializarla**: un contador empieza en 0."
+          ],
+          "codigo": [
+            "  robot robot1",
+            "  variables",
+            "    flores: numero",
+            "    encontre: boolean",
+            "  comenzar",
+            "    flores := 0",
+            "    encontre := F"
+          ]
+        },
+        {
+          "tipo": "concepto",
+          "titulo": "Operaciones",
+          "texto": [
+            "Con números: `+`, `-`, `*` y `/`. La división es **entera**: `25 / 3` da 8.",
+            "Para comparar: `=`, `<>` (distinto), `<`, `>`, `<=`, `>=`. El resultado de una comparación es un boolean, así que se puede usar en un `si` o un `mientras`."
+          ]
+        },
+        {
+          "tipo": "ejemplo",
+          "titulo": "Contar mientras se recorre",
+          "problema": "Contar las flores de la calle 3 entre las avenidas 1 y 8, e informar el total.",
+          "pasos": [
+            {
+              "texto": "Empezar el contador en 0.",
+              "lineas": [
+                9,
+                9
+              ]
+            },
+            {
+              "texto": "Ir a (1,3) y mirar al este.",
+              "lineas": [
+                10,
+                11
+              ]
+            },
+            {
+              "texto": "En cada esquina, tomar las flores y sumar 1 por cada una.",
+              "lineas": [
+                12,
+                15
+              ]
+            },
+            {
+              "texto": "Avanzar a la esquina siguiente.",
+              "lineas": [
+                16,
+                17
+              ]
+            },
+            {
+              "texto": "Informar el total.",
+              "lineas": [
+                18,
+                18
+              ]
+            }
+          ],
+          "programa": [
+            "programa ContarFlores",
+            "areas",
+            "  ciudad: AreaC(1,1,100,100)",
+            "robots",
+            "  robot robot1",
+            "  variables",
+            "    total: numero",
+            "  comenzar",
+            "    total := 0",
+            "    Pos(1,3)",
+            "    derecha",
+            "    repetir 8",
+            "      mientras HayFlorEnLaEsquina",
+            "        tomarFlor",
+            "        total := total + 1",
+            "      si PosAv < 8",
+            "        mover",
+            "    Informar(total)",
+            "  fin",
+            "variables",
+            "  R-info: robot1",
+            "comenzar",
+            "  AsignarArea(R-info,ciudad)",
+            "  Iniciar(R-info,1,1)",
+            "fin"
+          ],
+          "escenario": {
+            "flores": [
+              [
+                1,
+                3,
+                2
+              ],
+              [
+                3,
+                3,
+                1
+              ],
+              [
+                4,
+                3,
+                3
+              ],
+              [
+                7,
+                3,
+                1
+              ],
+              [
+                8,
+                3,
+                1
+              ],
+              [
+                5,
+                5,
+                2
+              ]
+            ]
+          },
+          "cierre": "Mirá el contador como un dato más del robot: aumenta cada vez que toma una flor. El si PosAv < 8 evita salir del tramo en la última esquina."
+        },
+        {
+          "tipo": "pregunta",
+          "pregunta": "¿Qué informa este programa en esta ciudad?",
+          "opciones": [
+            "2",
+            "3",
+            "5"
+          ],
+          "correcta": 1,
+          "explicacion": "Mirá el mapa: el robot cuenta las esquinas de la calle 2 entre la avenida 1 y la 6 que tienen al menos un papel. Hay papel en (2,2), (4,2) y (6,2): son 3 esquinas, aunque (4,2) tenga dos papeles.",
+          "programa": [
+            "programa QueInforma",
+            "areas",
+            "  ciudad: AreaC(1,1,100,100)",
+            "robots",
+            "  robot robot1",
+            "  variables",
+            "    cant: numero",
+            "  comenzar",
+            "    cant := 0",
+            "    Pos(1,2)",
+            "    derecha",
+            "    repetir 6",
+            "      si HayPapelEnLaEsquina",
+            "        cant := cant + 1",
+            "      si PosAv < 6",
+            "        mover",
+            "    Informar(cant)",
+            "  fin",
+            "variables",
+            "  R-info: robot1",
+            "comenzar",
+            "  AsignarArea(R-info,ciudad)",
+            "  Iniciar(R-info,1,1)",
+            "fin"
+          ],
+          "escenario": {
+            "papeles": [
+              [
+                2,
+                2,
+                1
+              ],
+              [
+                4,
+                2,
+                2
+              ],
+              [
+                6,
+                2,
+                1
+              ],
+              [
+                3,
+                4,
+                1
+              ]
+            ],
+            "flores": [
+              [
+                3,
+                2,
+                1
+              ]
+            ]
+          }
+        },
+        {
+          "tipo": "pregunta",
+          "pregunta": "¿Qué pasa si te olvidás de poner `total := 0` antes de usar `total`?",
+          "opciones": [
+            "Empieza en 0 igual.",
+            "El programa termina con error: la variable no tiene valor.",
+            "Empieza en 1."
+          ],
+          "correcta": 1,
+          "explicacion": "Una variable sin inicializar no tiene un valor conocido. En la app es un error de ejecución; en el examen, un error de lógica que se descuenta."
+        }
+      ],
+      "actividades": [
+        "c3-01a",
+        "c3-01b"
+      ]
+    },
+    {
+      "id": "l4",
+      "capitulo": 4,
+      "titulo": "Repaso: cuándo cortar",
+      "minutos": 8,
+      "resumen": "Condiciones de corte combinadas y cosas que pueden no existir.",
+      "secciones": [
+        {
+          "tipo": "concepto",
+          "titulo": "Buscar algo que puede no existir",
+          "texto": [
+            "Si buscás algo que **seguro existe**, alcanza con `mientras no lo encontré`.",
+            "Si **puede no existir**, el robot llegaría al final de la ciudad y se caería. Hay que cortar también al llegar al borde: `mientras (no lo encontré) & (PosCa < 100)`.",
+            "Al salir del mientras no sabés por cuál de las dos razones salió. Si hace falta, preguntalo después con un `si`."
+          ]
+        },
+        {
+          "tipo": "ejemplo",
+          "titulo": "Buscar una esquina vacía",
+          "problema": "Recorrer la avenida 4 desde la calle 1 hasta encontrar una esquina sin flores ni papeles, sin pasar de la calle 10. Informar en qué calle quedó.",
+          "pasos": [
+            {
+              "texto": "Ir al comienzo de la avenida 4.",
+              "lineas": [
+                7,
+                7
+              ]
+            },
+            {
+              "texto": "Mientras la esquina tenga algo y no haya llegado a la calle 10…",
+              "lineas": [
+                8,
+                8
+              ]
+            },
+            {
+              "texto": "…avanzar una cuadra.",
+              "lineas": [
+                9,
+                9
+              ]
+            },
+            {
+              "texto": "Informar la calle.",
+              "lineas": [
+                10,
+                10
+              ]
+            }
+          ],
+          "programa": [
+            "programa BuscarVacia",
+            "areas",
+            "  ciudad: AreaC(1,1,100,100)",
+            "robots",
+            "  robot robot1",
+            "  comenzar",
+            "    Pos(4,1)",
+            "    mientras (HayFlorEnLaEsquina | HayPapelEnLaEsquina) & (PosCa < 10)",
+            "      mover",
+            "    Informar(PosCa)",
+            "  fin",
+            "variables",
+            "  R-info: robot1",
+            "comenzar",
+            "  AsignarArea(R-info,ciudad)",
+            "  Iniciar(R-info,1,1)",
+            "fin"
+          ],
+          "escenario": {
+            "flores": [
+              [
+                4,
+                1,
+                1
+              ],
+              [
+                4,
+                2,
+                1
+              ],
+              [
+                4,
+                4,
+                2
+              ]
+            ],
+            "papeles": [
+              [
+                4,
+                3,
+                1
+              ],
+              [
+                4,
+                4,
+                1
+              ],
+              [
+                4,
+                6,
+                1
+              ]
+            ]
+          },
+          "cierre": "El mientras tiene dos razones para cortar: encontrar una esquina vacía o llegar a la calle 10. En esta ciudad corta en (4,5), la primera esquina sin nada."
+        },
+        {
+          "tipo": "pregunta",
+          "pregunta": "¿En qué esquina termina este programa en esta ciudad?",
+          "opciones": [
+            "(1,3)",
+            "(1,4)",
+            "(1,5)"
+          ],
+          "correcta": 1,
+          "explicacion": "En cada vuelta toma una sola flor y avanza, aunque queden más. En (1,3) había 2: toma una y sigue. En (1,4) no hay flores, así que el mientras termina ahí, sin llegar a ver la flor de (1,5).",
+          "programa": [
+            "programa DondeTermina",
+            "areas",
+            "  ciudad: AreaC(1,1,100,100)",
+            "robots",
+            "  robot robot1",
+            "  comenzar",
+            "    mientras HayFlorEnLaEsquina",
+            "      tomarFlor",
+            "      mover",
+            "  fin",
+            "variables",
+            "  R-info: robot1",
+            "comenzar",
+            "  AsignarArea(R-info,ciudad)",
+            "  Iniciar(R-info,1,1)",
+            "fin"
+          ],
+          "escenario": {
+            "flores": [
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                2,
+                1
+              ],
+              [
+                1,
+                3,
+                2
+              ],
+              [
+                1,
+                5,
+                1
+              ]
+            ]
+          }
+        },
+        {
+          "tipo": "pregunta",
+          "pregunta": "Querés recorrer una calle hasta juntar 10 papeles, pero puede que no haya tantos. ¿Qué condición usás?",
+          "opciones": [
+            "mientras papeles < 10",
+            "mientras (papeles < 10) & (PosAv < 100)",
+            "repetir 10"
+          ],
+          "correcta": 1,
+          "explicacion": "Sin la segunda condición, si no hay 10 papeles el robot intentaría seguir más allá de la avenida 100 y se saldría de la ciudad."
+        }
+      ],
+      "actividades": [
+        "c4-01a",
+        "c4-01b",
+        "c4-01c",
+        "c4-01d",
+        "c4-01e",
+        "c4-01f",
+        "c4-08"
+      ]
+    },
+    {
+      "id": "l5",
+      "capitulo": 5,
+      "titulo": "Dividir en procesos",
+      "minutos": 8,
+      "resumen": "Partir un problema grande en partes con nombre.",
+      "secciones": [
+        {
+          "tipo": "concepto",
+          "titulo": "De arriba hacia abajo",
+          "texto": [
+            "Un problema grande se resuelve mejor partido en **subproblemas**, cada uno con un objetivo claro. Primero pensás las partes grandes y después cada parte por separado.",
+            "En R-Info cada parte es un **proceso**: un bloque de instrucciones con nombre, declarado en la sección `procesos`. Para usarlo, escribís su nombre; cuando termina, el robot sigue con la línea siguiente."
+          ],
+          "codigo": [
+            "procesos",
+            "  proceso LimpiarEsquina",
+            "  comenzar",
+            "    mientras HayFlorEnLaEsquina",
+            "      tomarFlor",
+            "    mientras HayPapelEnLaEsquina",
+            "      tomarPapel",
+            "  fin"
+          ]
+        },
+        {
+          "tipo": "ejemplo",
+          "titulo": "Usar un proceso",
+          "problema": "Dejar vacías las esquinas de la avenida 3 entre las calles 1 y 6.",
+          "pasos": [
+            {
+              "texto": "Definir qué es limpiar una esquina (una sola vez).",
+              "lineas": [
+                3,
+                8
+              ]
+            },
+            {
+              "texto": "Ir al comienzo de la avenida 3.",
+              "lineas": [
+                15,
+                15
+              ]
+            },
+            {
+              "texto": "Limpiar y avanzar en las primeras 5 esquinas.",
+              "lineas": [
+                16,
+                18
+              ]
+            },
+            {
+              "texto": "Limpiar la última.",
+              "lineas": [
+                19,
+                19
+              ]
+            }
+          ],
+          "programa": [
+            "programa LimpiarAvenida",
+            "procesos",
+            "  proceso LimpiarEsquina",
+            "  comenzar",
+            "    mientras HayFlorEnLaEsquina",
+            "      tomarFlor",
+            "    mientras HayPapelEnLaEsquina",
+            "      tomarPapel",
+            "  fin",
+            "areas",
+            "  ciudad: AreaC(1,1,100,100)",
+            "robots",
+            "  robot robot1",
+            "  comenzar",
+            "    Pos(3,1)",
+            "    repetir 5",
+            "      LimpiarEsquina",
+            "      mover",
+            "    LimpiarEsquina",
+            "  fin",
+            "variables",
+            "  R-info: robot1",
+            "comenzar",
+            "  AsignarArea(R-info,ciudad)",
+            "  Iniciar(R-info,1,1)",
+            "fin"
+          ],
+          "escenario": {
+            "flores": [
+              [
+                3,
+                1,
+                2
+              ],
+              [
+                3,
+                4,
+                1
+              ],
+              [
+                3,
+                6,
+                1
+              ]
+            ],
+            "papeles": [
+              [
+                3,
+                2,
+                1
+              ],
+              [
+                3,
+                4,
+                2
+              ],
+              [
+                4,
+                4,
+                1
+              ]
+            ]
+          },
+          "cierre": "El programa principal del robot quedó corto y se lee casi como los pasos en castellano. Cada vez que llama a LimpiarEsquina, la ejecución salta al proceso y vuelve."
+        },
+        {
+          "tipo": "pregunta",
+          "pregunta": "¿Dónde se declara un proceso?",
+          "opciones": [
+            "Dentro del robot, antes de comenzar.",
+            "En la sección procesos, antes de areas.",
+            "En cualquier lugar del programa."
+          ],
+          "correcta": 1,
+          "explicacion": "El orden de las secciones es fijo: programa, procesos, areas, robots, variables y el comenzar principal."
+        },
+        {
+          "tipo": "pregunta",
+          "pregunta": "Cuando un proceso termina, ¿dónde sigue el robot?",
+          "opciones": [
+            "En la primera línea del programa.",
+            "En la línea siguiente a la que lo llamó.",
+            "Se detiene."
+          ],
+          "correcta": 1,
+          "explicacion": "Un proceso es un desvío: se ejecuta completo y la ejecución vuelve justo después de la llamada."
+        }
+      ],
+      "actividades": []
+    },
+    {
+      "id": "l6",
+      "capitulo": 6,
+      "titulo": "Parámetros de entrada",
+      "minutos": 8,
+      "resumen": "Pasarle datos a un proceso para que sirva en más casos.",
+      "secciones": [
+        {
+          "tipo": "concepto",
+          "titulo": "Comunicar datos",
+          "texto": [
+            "Un proceso con **parámetros** recibe datos cada vez que lo llamás. `proceso Cuadrado(E lado: numero)` dibuja un cuadrado del tamaño que le pidas.",
+            "En la declaración están los parámetros **formales** (`lado`). En la llamada, los **actuales**: `Cuadrado(3)` o `Cuadrado(medida)`.",
+            "Un parámetro **E** (entrada) recibe una **copia** del valor: el proceso lo puede leer pero **no le puede asignar** nada. Si necesitás cambiarlo, copialo a una variable del proceso."
+          ]
+        },
+        {
+          "tipo": "ejemplo",
+          "titulo": "Un proceso, varios tamaños",
+          "problema": "Dibujar un cuadrado de lado 2 desde (1,1) y otro de lado 4 desde (5,2).",
+          "pasos": [
+            {
+              "texto": "Definir cómo hacer un cuadrado de cualquier lado.",
+              "lineas": [
+                3,
+                8
+              ]
+            },
+            {
+              "texto": "Cuadrado de lado 2 donde está el robot.",
+              "lineas": [
+                15,
+                15
+              ]
+            },
+            {
+              "texto": "Ir a (5,2).",
+              "lineas": [
+                16,
+                16
+              ]
+            },
+            {
+              "texto": "Cuadrado de lado 4.",
+              "lineas": [
+                17,
+                17
+              ]
+            }
+          ],
+          "programa": [
+            "programa Cuadrados",
+            "procesos",
+            "  proceso Cuadrado(E lado: numero)",
+            "  comenzar",
+            "    repetir 4",
+            "      repetir lado",
+            "        mover",
+            "      derecha",
+            "  fin",
+            "areas",
+            "  ciudad: AreaC(1,1,100,100)",
+            "robots",
+            "  robot robot1",
+            "  comenzar",
+            "    Cuadrado(2)",
+            "    Pos(5,2)",
+            "    Cuadrado(4)",
+            "  fin",
+            "variables",
+            "  R-info: robot1",
+            "comenzar",
+            "  AsignarArea(R-info,ciudad)",
+            "  Iniciar(R-info,1,1)",
+            "fin"
+          ],
+          "escenario": {},
+          "cierre": "El mismo proceso hace los dos cuadrados: lo único que cambia es el valor que recibe lado."
+        },
+        {
+          "tipo": "pregunta",
+          "pregunta": "Dentro de `proceso Avanzar(E n: numero)`, ¿cuál de estas líneas es un error?",
+          "opciones": [
+            "repetir n",
+            "n := n - 1",
+            "si n > 0"
+          ],
+          "correcta": 1,
+          "explicacion": "A un parámetro E no se le puede asignar. Leerlo (repetir n, si n > 0) sí está permitido."
+        },
+        {
+          "tipo": "pregunta",
+          "pregunta": "Con `proceso Rectangulo(E alto: numero; E ancho: numero)`, ¿qué hace `Rectangulo(2, 5)`?",
+          "opciones": [
+            "Alto 2 y ancho 5",
+            "Alto 5 y ancho 2",
+            "Depende del robot"
+          ],
+          "correcta": 0,
+          "explicacion": "Los valores se asignan por posición: el primero va al primer parámetro (alto) y el segundo al segundo (ancho)."
+        }
+      ],
+      "actividades": []
+    },
+    {
+      "id": "l7",
+      "capitulo": 7,
+      "titulo": "Parámetros de entrada y salida",
+      "minutos": 8,
+      "resumen": "Que un proceso devuelva un resultado.",
+      "secciones": [
+        {
+          "tipo": "concepto",
+          "titulo": "Devolver un resultado",
+          "texto": [
+            "Un parámetro **ES** (entrada/salida) no recibe una copia: el proceso trabaja **directamente sobre la variable** que le pasaste. Lo que el proceso le asigne queda en esa variable al volver.",
+            "Por eso, al llamar a un proceso con un parámetro ES, hay que pasarle **una variable**, nunca un número o una expresión.",
+            "Se usa para que el proceso cuente, busque o calcule algo y se lo devuelva al robot."
+          ]
+        },
+        {
+          "tipo": "ejemplo",
+          "titulo": "Contar en un proceso",
+          "problema": "Contar cuántas flores hay en la esquina (2,2) y en la (6,4) usando un proceso, e informar cada cantidad.",
+          "pasos": [
+            {
+              "texto": "Definir un proceso que junte las flores de la esquina y devuelva cuántas eran.",
+              "lineas": [
+                3,
+                8
+              ]
+            },
+            {
+              "texto": "Ir a (2,2), contar e informar.",
+              "lineas": [
+                17,
+                19
+              ]
+            },
+            {
+              "texto": "Ir a (6,4), contar e informar.",
+              "lineas": [
+                20,
+                22
+              ]
+            }
+          ],
+          "programa": [
+            "programa ContarConProceso",
+            "procesos",
+            "  proceso ContarFlores(ES n: numero)",
+            "  comenzar",
+            "    n := 0",
+            "    mientras HayFlorEnLaEsquina",
+            "      tomarFlor",
+            "      n := n + 1",
+            "  fin",
+            "areas",
+            "  ciudad: AreaC(1,1,100,100)",
+            "robots",
+            "  robot robot1",
+            "  variables",
+            "    cant: numero",
+            "  comenzar",
+            "    Pos(2,2)",
+            "    ContarFlores(cant)",
+            "    Informar(cant)",
+            "    Pos(6,4)",
+            "    ContarFlores(cant)",
+            "    Informar(cant)",
+            "  fin",
+            "variables",
+            "  R-info: robot1",
+            "comenzar",
+            "  AsignarArea(R-info,ciudad)",
+            "  Iniciar(R-info,1,1)",
+            "fin"
+          ],
+          "escenario": {
+            "flores": [
+              [
+                2,
+                2,
+                3
+              ],
+              [
+                6,
+                4,
+                1
+              ],
+              [
+                4,
+                4,
+                2
+              ]
+            ]
+          },
+          "cierre": "El proceso asigna n, y como n es ES, ese valor queda en cant cuando vuelve. Fijate que el robot no necesita inicializar cant: lo hace el proceso."
+        },
+        {
+          "tipo": "pregunta",
+          "pregunta": "Con `proceso Contar(ES total: numero)`, ¿cuál llamada es válida?",
+          "opciones": [
+            "Contar(0)",
+            "Contar(cant)",
+            "Contar(cant + 1)"
+          ],
+          "correcta": 1,
+          "explicacion": "Un parámetro ES necesita una variable donde dejar el resultado. Un número o una cuenta no tienen dónde guardarlo."
+        },
+        {
+          "tipo": "pregunta",
+          "pregunta": "¿Qué informa este programa?",
+          "opciones": [
+            "0",
+            "5",
+            "6"
+          ],
+          "correcta": 2,
+          "explicacion": "El proceso suma 1 directamente sobre x porque es ES. Si fuera E, trabajaría sobre una copia y x seguiría valiendo 5.",
+          "programa": [
+            "programa EsOE",
+            "procesos",
+            "  proceso SumarUno(ES v: numero)",
+            "  comenzar",
+            "    v := v + 1",
+            "  fin",
+            "areas",
+            "  ciudad: AreaC(1,1,100,100)",
+            "robots",
+            "  robot robot1",
+            "  variables",
+            "    x: numero",
+            "  comenzar",
+            "    x := 5",
+            "    SumarUno(x)",
+            "    Informar(x)",
+            "  fin",
+            "variables",
+            "  R-info: robot1",
+            "comenzar",
+            "  AsignarArea(R-info,ciudad)",
+            "  Iniciar(R-info,1,1)",
+            "fin"
+          ]
+        }
+      ],
+      "actividades": []
+    }
+  ]
+}

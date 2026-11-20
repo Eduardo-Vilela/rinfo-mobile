@@ -2,7 +2,7 @@
 
 App para practicar R-Info (Curso de Ingreso, Facultad de Informática UNLP) desde el celular. La idea es practicar como en el examen escrito: escribís el programa completo, sin autocompletado, y la app lo corrige con las reglas del material del curso.
 
-- **Aprender**: leés un programa y predecís qué hace en distintas situaciones, o decidís si unas afirmaciones son verdaderas o falsas. Después ves el recorrido en la ciudad.
+- **Aprender**: 8 lecciones, una por capítulo del material (0 a 7). Cada una tiene conceptos breves, un ejemplo resuelto paso a paso (problema → pasos en castellano → código → ejecución en el mapa) y preguntas. Al final, actividades de "¿Qué hace?" y verdadero o falso con el mapa a la vista.
 - **Practicar**: escribís el programa, compilás las veces que quieras y entregás.
 - **Examen**: hoja en blanco, con temporizador y una sola entrega. También hay un simulacro con dos ejercicios al azar.
 
@@ -10,7 +10,7 @@ App para practicar R-Info (Curso de Ingreso, Facultad de Informática UNLP) desd
 
 68 actividades de los capítulos 2 a 7 y de los ejercicios adicionales del Curso de Ingreso, incluidos los dos enunciados de examen de 2013. Falta cargar los ejercicios que dependen de una figura (recorridos de las figuras 5.9 a 5.11 y 6.5 a 6.7, y los adicionales 3 y 5).
 
-En la pantalla de resultado, al tocar una ciudad se ve el recorrido de tu programa paso a paso.
+El mapa de la ciudad aparece en todas las actividades: muestra la ciudad antes de ejecutar, reproduce el programa a velocidad lenta, normal o rápida y resalta en el código la línea que se está ejecutando. En Practicar podés probar tu programa en el mapa antes de entregar.
 
 ## Estructura
 
@@ -32,6 +32,7 @@ apps/mobile           App Expo (React Native)
 pnpm install
 pnpm test                 # tests del intérprete
 pnpm start                # abre Expo; escaneá el QR con Expo Go
+pnpm --filter mobile lint # ESLint con la configuración de Expo
 ```
 
 ## Obtener el APK

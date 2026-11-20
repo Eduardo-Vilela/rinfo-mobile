@@ -10,3 +10,7 @@ import adicionales from '../ejercicios/adicionales.json';
 /** Para sumar ejercicios: creá un JSON nuevo en /ejercicios y agregalo a esta lista. */
 export const CAPITULOS = [cap2, cap3, cap4, cap5, cap6, cap7, adicionales] as unknown as ArchivoEjercicios[];
 export const EJERCICIOS: Ejercicio[] = CAPITULOS.flatMap((c) => c.ejercicios);
+
+import lecciones from '../ejercicios/lecciones.json';
+import type { Leccion } from './types';
+export const LECCIONES = (lecciones as unknown as { lecciones: Leccion[] }).lecciones;

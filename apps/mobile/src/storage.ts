@@ -17,3 +17,13 @@ export async function marcarResuelto(id: string) {
   s.add(id);
   try { await AsyncStorage.setItem(RESUELTOS, JSON.stringify([...s])); } catch {}
 }
+
+const LECCIONES = 'lecciones';
+export async function leerLecciones(): Promise<Set<string>> {
+  try { return new Set(JSON.parse((await AsyncStorage.getItem(LECCIONES)) ?? '[]')); } catch { return new Set(); }
+}
+export async function marcarLeccion(id: string) {
+  const s = await leerLecciones();
+  s.add(id);
+  try { await AsyncStorage.setItem(LECCIONES, JSON.stringify([...s])); } catch {}
+}

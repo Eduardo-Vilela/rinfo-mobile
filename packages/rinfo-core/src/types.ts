@@ -54,7 +54,43 @@ export type EjercicioVerdaderoFalso = Omit<Base, 'escenarios'> & {
   tipo: 'verdaderoFalso';
   programa: string[];
   afirmaciones: { texto: string; respuesta: boolean; justificacion: string }[];
+  // Ciudades de ejemplo para explorar el programa en el mapa antes de responder.
+  ejemplos?: Escenario[];
 };
+
+// ---------- Lecciones del módulo Aprender ----------
+
+export type Leccion = {
+  id: string;           // "l0" … "l7"
+  capitulo: number;     // capítulo del material
+  titulo: string;
+  resumen: string;
+  minutos: number;
+  secciones: Seccion[];
+  actividades: string[]; // ids de ejercicios ¿Qué hace? / V-F para practicar al final
+};
+
+export type Seccion =
+  | { tipo: 'concepto'; titulo: string; texto: string[]; codigo?: string[] }
+  | {
+      tipo: 'ejemplo';
+      titulo: string;
+      problema: string;
+      // El problema resuelto primero en castellano; cada paso apunta a las líneas que lo implementan.
+      pasos: { texto: string; lineas: [desde: number, hasta: number] }[];
+      programa: string[];
+      escenario: Escenario;
+      cierre?: string;
+    }
+  | {
+      tipo: 'pregunta';
+      pregunta: string;
+      programa?: string[];
+      escenario?: Escenario; // si está, se muestra el mapa para deducir la respuesta
+      opciones: string[];
+      correcta: number;
+      explicacion: string;
+    };
 
 export type Observable =
   | 'informa'        // secuencia de valores mostrados con Informar

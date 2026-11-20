@@ -2,62 +2,71 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { BackHandler } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { EJERCICIOS, type Correccion, type Ejercicio, type EjercicioPrograma } from 'rinfo-core';
+import { EJERCICIOS, type Correccion, type Ejercicio, type EjercicioPrograma, type Leccion as TLeccion } from 'rinfo-core';
 import { Inicio, type Modulo } from './src/screens/Inicio';
+import { Leccion } from './src/screens/Leccion';
 import { Programa } from './src/screens/Programa';
 import { QueHace } from './src/screens/QueHace';
-import { VerdaderoFalso } from './src/screens/VerdaderoFalso';
 import { Resultado } from './src/screens/Resultado';
+import { VerdaderoFalso } from './src/screens/VerdaderoFalso';
 import { marcarResuelto } from './src/storage';
 import { color } from './src/theme';
 
 type Pantalla =
   | { p: 'inicio' }
-  | { p: 'queHace'; e: Extract<Ejercicio, { tipo: 'queHace' }> }
-  | { p: 'vf'; e: Extract<Ejercicio, { tipo: 'verdaderoFalso' }> }
+  | { p: 'leccion'; l: TLeccion; alFinal?: boolean }
+  | { p: 'queHace'; e: Extract<Ejercicio, { tipo: 'queHace' }>; desde?: TLeccion }
+  | { p: 'vf'; e: Extract<Ejercicio, { tipo: 'verdaderoFalso' }>; desde?: TLeccion }
   | { p: 'programa'; cola: EjercicioPrograma[]; k: number; examen: boolean; intento: number }
   | { p: 'resultado'; cola: EjercicioPrograma[]; k: number; examen: boolean; correccion: Correccion; codigo: string };
 
 const programas = () => EJERCICIOS.filter((e): e is EjercicioPrograma => e.tipo === 'programa');
+const azar = <T,>(xs: T[]) => [...xs].sort(() => Math.random() - 0.5);
 
 export default function App() {
   const [modulo, setModulo] = useState<Modulo>('aprender');
   const [pantalla, setPantalla] = useState<Pantalla>({ p: 'inicio' });
   const inicio = () => setPantalla({ p: 'inicio' });
+  // Las actividades abiertas desde una lección vuelven a esa lección.
+  const volver = () => {
+    if ((pantalla.p === 'queHace' || pantalla.p === 'vf') && pantalla.desde) setPantalla({ p: 'leccion', l: pantalla.desde, alFinal: true });
+    else inicio();
+  };
 
   useEffect(() => {
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       if (pantalla.p === 'inicio') return false;
-      inicio();
+      volver();
       return true;
     });
     return () => sub.remove();
-  }, [pantalla.p]);
+  }, [pantalla]);
 
-  function abrir(e: Ejercicio, m: Modulo) {
-    if (e.tipo === 'queHace') setPantalla({ p: 'queHace', e });
-    else if (e.tipo === 'verdaderoFalso') setPantalla({ p: 'vf', e });
+  function abrir(e: Ejercicio, m: Modulo, desde?: TLeccion) {
+    if (e.tipo === 'queHace') setPantalla({ p: 'queHace', e, desde });
+    else if (e.tipo === 'verdaderoFalso') setPantalla({ p: 'vf', e, desde });
     else setPantalla({ p: 'programa', cola: [e], k: 0, examen: m === 'examen', intento: 0 });
   }
   function simulacro() {
-    // Un simulacro arma dos ejercicios al azar, priorizando los de tipo examen.
+    // Un ejercicio de tipo examen y otro de práctica de nivel 2 o más.
     const examen = programas().filter((e) => e.modulo === 'examen');
     const resto = programas().filter((e) => e.modulo !== 'examen' && e.dificultad >= 2);
-    const azar = <T,>(xs: T[]) => [...xs].sort(() => Math.random() - 0.5);
-    const lista = [...azar(examen).slice(0, 1), ...azar(resto).slice(0, 1)];
-    setPantalla({ p: 'programa', cola: lista, k: 0, examen: true, intento: 0 });
+    setPantalla({ p: 'programa', cola: [...azar(examen).slice(0, 1), ...azar(resto).slice(0, 1)], k: 0, examen: true, intento: 0 });
   }
 
   let contenido;
   switch (pantalla.p) {
     case 'inicio':
-      contenido = <Inicio modulo={modulo} setModulo={setModulo} abrir={abrir} simulacro={simulacro} />;
+      contenido = <Inicio modulo={modulo} setModulo={setModulo} abrir={abrir} abrirLeccion={(l) => setPantalla({ p: 'leccion', l })} simulacro={simulacro} />;
+      break;
+    case 'leccion':
+      contenido = <Leccion key={pantalla.l.id} leccion={pantalla.l} alFinal={pantalla.alFinal} onVolver={inicio} abrir={(e) => abrir(e, 'aprender', pantalla.l)} />;
       break;
     case 'queHace':
-      contenido = <QueHace ejercicio={pantalla.e} onVolver={inicio} />;
+      contenido = <QueHace key={pantalla.e.id} ejercicio={pantalla.e} onVolver={volver} />;
       break;
     case 'vf':
-      contenido = <VerdaderoFalso ejercicio={pantalla.e} onVolver={inicio} />;
+      contenido = <VerdaderoFalso key={pantalla.e.id} ejercicio={pantalla.e} onVolver={volver} />;
       break;
     case 'programa': {
       const { cola, k, examen, intento } = pantalla;
