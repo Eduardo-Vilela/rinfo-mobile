@@ -1,26 +1,21 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router, useFocusEffect } from 'expo-router';
-import { useCallback, useState, type ReactNode } from 'react';
+import { useCallback, type ReactNode } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { CAPITULOS, EJERCICIOS, LECCIONES, type Ejercicio, type EjercicioPrograma, type Leccion } from 'rinfo-core';
 import { Pantalla } from '../components/Pantalla';
 import { BarraProgreso, Boton, Chip, Encabezado, s as ui, Tarjeta } from '../components/ui';
-import { leerLecciones, leerResueltos } from '../storage';
+import { useProgreso } from '../progreso';
 import { color, espacio, radio } from '../theme';
 
 export type Modulo = 'aprender' | 'practicar' | 'examen';
 
-/** Progreso guardado, releído cada vez que la pestaña vuelve a estar en foco. */
-function useProgreso() {
-  const [resueltos, setResueltos] = useState<Set<string>>(new Set());
-  const [lecciones, setLecciones] = useState<Set<string>>(new Set());
-  useFocusEffect(
-    useCallback(() => {
-      leerResueltos().then(setResueltos);
-      leerLecciones().then(setLecciones);
-    }, []),
-  );
-  return { resueltos, lecciones };
+/** Progreso guardado (cargado al abrir la app), releído cada vez que la pestaña vuelve a estar en foco. */
+function useProgresoEnFoco() {
+  const progreso = useProgreso();
+  const { recargar } = progreso;
+  useFocusEffect(useCallback(() => { recargar(); }, [recargar]));
+  return progreso;
 }
 
 const abrirLeccion = (l: Leccion) => router.push({ pathname: '/leccion/[id]', params: { id: l.id } });
@@ -38,15 +33,15 @@ function Lista({ children }: { children: ReactNode }) {
 }
 
 export function PestanaAprender() {
-  const { resueltos, lecciones } = useProgreso();
+  const { resueltos, lecciones } = useProgresoEnFoco();
   return <Lista><Aprender lecciones={lecciones} resueltos={resueltos} abrirLeccion={abrirLeccion} /></Lista>;
 }
 export function PestanaPracticar() {
-  const { resueltos } = useProgreso();
+  const { resueltos } = useProgresoEnFoco();
   return <Lista><Practicar resueltos={resueltos} abrir={(e) => abrirEjercicio(e)} /></Lista>;
 }
 export function PestanaExamen() {
-  const { resueltos } = useProgreso();
+  const { resueltos } = useProgresoEnFoco();
   return <Lista><Examen resueltos={resueltos} abrir={(e) => abrirEjercicio(e, true)} simulacro={simulacro} /></Lista>;
 }
 

@@ -2,6 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useEffect, useRef, useState } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { compilar, corregir, type Correccion, type EjercicioPrograma, type Programa as TPrograma, type RInfoError } from 'rinfo-core';
+import { Cargando } from '../components/Cargando';
 import { Ciudad } from '../components/Ciudad';
 import { BarraInferior, Boton, Chip, Encabezado, Parrafo, s as ui, Tarjeta } from '../components/ui';
 import { guardarBorrador, leerBorrador } from '../storage';
@@ -27,9 +28,12 @@ export function Programa({ ejercicio, examen, subtitulo, onVolver, onEntregar }:
   const [probado, setProbado] = useState<TPrograma | undefined>();
   const [verMapa, setVerMapa] = useState(false);
   const [version, setVersion] = useState(0);
+  const [corrigiendo, setCorrigiendo] = useState(false);
   const [restante, setRestante] = useState(ejercicio.tiempoSugeridoMin * 60);
   const cargado = useRef(false);
   const escenario = ejercicio.escenarios[0];
+  // Cada escenario aleatorio se prueba en 3 ciudades distintas (ver SEMILLAS_POR_ESCENARIO en rinfo-core).
+  const ciudades = ejercicio.escenarios.reduce((n, e) => n + (e.aleatorio ? 3 : 1), 0);
 
   // En práctica se recupera el borrador; en examen siempre se arranca con la hoja en blanco.
   useEffect(() => {
@@ -51,6 +55,15 @@ export function Programa({ ejercicio, examen, subtitulo, onVolver, onEntregar }:
     setCodigo(nuevo);
     setForzarSel({ start: pos, end: pos });
     setTimeout(() => setForzarSel(undefined), 50);
+  }
+  /** Corregir es síncrono y en ejercicios largos tarda: se muestra el indicador y se corrige en el próximo cuadro. */
+  function entregar() {
+    setCorrigiendo(true);
+    setTimeout(() => {
+      const c = corregir(codigo, ejercicio);
+      setCorrigiendo(false);
+      onEntregar(c, codigo);
+    }, 60);
   }
   function compilarYProbar() {
     const c = compilar(codigo);
@@ -146,8 +159,9 @@ export function Programa({ ejercicio, examen, subtitulo, onVolver, onEntregar }:
           <Text style={st.tabTexto}>⇥ Tab</Text>
         </Pressable>
         {!examen && <Boton titulo="Probar" icono="play" tipo="secundario" onPress={compilarYProbar} deshabilitado={!codigo.trim()} />}
-        <Boton titulo="Entregar" icono="send" onPress={() => onEntregar(corregir(codigo, ejercicio), codigo)} deshabilitado={!codigo.trim()} />
+        <Boton titulo="Entregar" icono="send" onPress={entregar} deshabilitado={!codigo.trim() || corrigiendo} />
       </BarraInferior>
+      <Cargando visible={corrigiendo} mensaje="Corrigiendo tu programa" detalle={`Lo pruebo en ${ciudades} ${ciudades === 1 ? 'ciudad' : 'ciudades'}`} />
     </KeyboardAvoidingView>
   );
 }
