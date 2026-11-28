@@ -27,3 +27,11 @@ export async function marcarLeccion(id: string) {
   s.add(id);
   try { await AsyncStorage.setItem(LECCIONES, JSON.stringify([...s])); } catch {}
 }
+
+/** Borra todo lo guardado en el teléfono (al eliminar la cuenta). No toca la sesión de Supabase. */
+export async function borrarProgreso() {
+  try {
+    const claves = await AsyncStorage.getAllKeys();
+    await AsyncStorage.multiRemove(claves.filter((k) => k === RESUELTOS || k === LECCIONES || k.startsWith(BORRADOR)));
+  } catch {}
+}

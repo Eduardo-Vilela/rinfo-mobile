@@ -59,3 +59,6 @@ El APK está firmado con la clave de debug que genera Expo. Sirve para instalarl
 Cada ejercicio de tipo `programa` se corrige ejecutando tu código y la `solucion` en las mismas ciudades, y comparando solo lo que se lista en `compararConReferencia` (`informa`, `posicionFinal`, `recorrido`, `ciudad`, `bolsa`). Para pedir modularización usá `"usa": { "procesosMin": 2 }`.
 
 Los escenarios con `aleatorio` se prueban con 3 ciudades distintas. Con `restricciones` podés garantizar condiciones del enunciado, por ejemplo "seguro existen 20 flores": `{ "zona": [1,7,100,7], "totalFlores": { "min": 20 } }`.
+
+## Login
+Ver [docs/login.md](docs/login.md) para configurar Supabase, Google, Apple y los secretos del build.

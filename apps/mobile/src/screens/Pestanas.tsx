@@ -4,7 +4,8 @@ import { useCallback, type ReactNode } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { CAPITULOS, EJERCICIOS, LECCIONES, type Ejercicio, type EjercicioPrograma, type Leccion } from 'rinfo-core';
 import { Pantalla } from '../components/Pantalla';
-import { BarraProgreso, Boton, Chip, Encabezado, s as ui, Tarjeta } from '../components/ui';
+import { authConfigurado } from '../auth/supabase';
+import { BarraProgreso, Boton, BotonIcono, Chip, Encabezado, s as ui, Tarjeta } from '../components/ui';
 import { useProgreso } from '../progreso';
 import { color, espacio, radio } from '../theme';
 
@@ -17,6 +18,10 @@ function useProgresoEnFoco() {
   useFocusEffect(useCallback(() => { recargar(); }, [recargar]));
   return progreso;
 }
+
+const botonCuenta = authConfigurado
+  ? <BotonIcono icono="person-circle-outline" etiqueta="Tu cuenta" onPress={() => router.push('/cuenta')} />
+  : undefined;
 
 const abrirLeccion = (l: Leccion) => router.push({ pathname: '/leccion/[id]', params: { id: l.id } });
 const abrirEjercicio = (e: Ejercicio, examen = false) =>
@@ -60,7 +65,7 @@ function Aprender({ lecciones, resueltos, abrirLeccion }: { lecciones: Set<strin
   const siguiente = LECCIONES.find((l) => !lecciones.has(l.id));
   return (
     <>
-      <Encabezado grande titulo="Aprender" subtitulo="Curso de ingreso · Informática UNLP" />
+      <Encabezado grande derecha={botonCuenta} titulo="Aprender" subtitulo="Curso de ingreso · Informática UNLP" />
       <View style={st.contenido}>
         <Tarjeta estilo={{ gap: espacio(3) }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -131,7 +136,7 @@ function Practicar({ resueltos, abrir }: { resueltos: Set<string>; abrir: (e: Ej
   const hechos = programas.filter((e) => resueltos.has(e.id)).length;
   return (
     <>
-      <Encabezado grande titulo="Practicar" subtitulo="Escribí el programa completo y probalo en el mapa" />
+      <Encabezado grande derecha={botonCuenta} titulo="Practicar" subtitulo="Escribí el programa completo y probalo en el mapa" />
       <View style={st.contenido}>
         <Tarjeta estilo={{ gap: espacio(3) }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -153,7 +158,7 @@ function Examen({ resueltos, abrir, simulacro }: { resueltos: Set<string>; abrir
   const deExamen = EJERCICIOS.filter((e): e is EjercicioPrograma => e.tipo === 'programa' && e.modulo === 'examen');
   return (
     <>
-      <Encabezado grande titulo="Examen" subtitulo="Hoja en blanco, con tiempo y una sola entrega" />
+      <Encabezado grande derecha={botonCuenta} titulo="Examen" subtitulo="Hoja en blanco, con tiempo y una sola entrega" />
       <View style={st.contenido}>
         <View style={st.heroe}>
           <Ionicons name="timer" size={28} color="#FFFFFF" />

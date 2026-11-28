@@ -15,6 +15,11 @@ concurrency:
 jobs:
   apk:
     runs-on: ubuntu-latest
+    # Login: se cargan en GitHub → Settings → Secrets and variables → Actions. Sin ellos la app anda sin cuentas.
+    env:
+      EXPO_PUBLIC_SUPABASE_URL: ${{ secrets.EXPO_PUBLIC_SUPABASE_URL }}
+      EXPO_PUBLIC_SUPABASE_KEY: ${{ secrets.EXPO_PUBLIC_SUPABASE_KEY }}
+      EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID: ${{ secrets.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID }}
     steps:
       - uses: actions/checkout@v4
 
@@ -48,6 +53,14 @@ jobs:
         run: npx expo prebuild --platform android --no-install
         env:
           CI: 1
+
+      - name: Huella SHA-1 de la firma (para el cliente OAuth Android de Google)
+        working-directory: apps/mobile/android/app
+        run: |
+          sha=$(keytool -list -v -keystore debug.keystore -alias androiddebugkey -storepass android -keypass android | grep 'SHA1:' | awk '{print $2}')
+          echo "SHA-1: $sha"
+          echo "### Firma del APK" >> "$GITHUB_STEP_SUMMARY"
+          echo "Paquete \`com.eduardovilela.rinfo\` · SHA-1 \`$sha\`" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Compilar APK
         working-directory: apps/mobile/android
