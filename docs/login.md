@@ -7,8 +7,8 @@ Sin esas variables la app funciona sin cuentas (útil para desarrollo).
 1. Crear un proyecto gratis en https://supabase.com.
 2. SQL Editor → pegar `supabase/migrations/0001_cuentas.sql` → Run.
 3. Project Settings → API: copiar **Project URL** y la **publishable key** (`sb_publishable_…`, o la `anon` si es un proyecto viejo).
-4. Authentication → Email Templates → **Magic Link**: incluir el código, por ejemplo
-   `<h2>Tu código de R-Info</h2><p>{{ .Token }}</p>`
+4. Authentication → Emails → **Magic link or OTP** (requiere SMTP propio): asunto `Tu código de R-Info` y en Source pegar
+   `supabase/templates/codigo-acceso.html`.
 5. Authentication → Providers → Email: dejarlo activo. El correo de prueba de Supabase manda pocos mails por hora:
    para muchos alumnos, configurar un SMTP propio (Resend, Brevo, etc.) en Authentication → SMTP.
 
