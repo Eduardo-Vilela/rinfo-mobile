@@ -1,7 +1,7 @@
 # Login (Supabase + Google + Apple + email)
 
-El login es obligatorio cuando el build tiene `EXPO_PUBLIC_SUPABASE_URL` y `EXPO_PUBLIC_SUPABASE_KEY`.
-Sin esas variables la app funciona sin cuentas (útil para desarrollo).
+El login es obligatorio. La URL y la publishable key del proyecto están en `apps/mobile/src/auth/supabase.ts`
+(son públicas). Para desarrollar sin cuentas: `EXPO_PUBLIC_SIN_LOGIN=1`.
 
 ## 1. Supabase
 1. Crear un proyecto gratis en https://supabase.com.
@@ -27,8 +27,6 @@ y en Supabase → Providers → Apple agregar `com.eduardovilela.rinfo` en *Clie
 
 ## 4. Secretos en GitHub
 Repo → Settings → Secrets and variables → Actions → New repository secret:
-- `EXPO_PUBLIC_SUPABASE_URL`
-- `EXPO_PUBLIC_SUPABASE_KEY`
 - `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID` (el de tipo *Aplicación web*)
 
 Después, re-ejecutar el workflow o hacer un push.
