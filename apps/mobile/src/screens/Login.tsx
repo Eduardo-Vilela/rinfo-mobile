@@ -110,7 +110,7 @@ export function Login() {
                 <TextInput
                   value={codigo}
                   onChangeText={(t) => setCodigo(t.replace(/\D/g, '').slice(0, 8))}
-                  placeholder="123456"
+                  placeholder="••••••"
                   placeholderTextColor={color.suave}
                   keyboardType="number-pad"
                   autoComplete="one-time-code"

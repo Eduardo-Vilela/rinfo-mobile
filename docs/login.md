@@ -7,8 +7,9 @@ El login es obligatorio. La URL y la publishable key del proyecto están en `app
 1. Crear un proyecto gratis en https://supabase.com.
 2. SQL Editor → pegar `supabase/migrations/0001_cuentas.sql` → Run.
 3. Project Settings → API: copiar **Project URL** y la **publishable key** (`sb_publishable_…`, o la `anon` si es un proyecto viejo).
-4. Authentication → Emails → **Magic link or OTP** (requiere SMTP propio): asunto `Tu código de R-Info` y en Source pegar
-   `supabase/templates/codigo-acceso.html`.
+4. Authentication → Emails (requiere SMTP propio): en **Confirm signup** (primer ingreso) y en **Magic link or OTP**
+   (siguientes) poner asunto `Tu código de R-Info` y en Source pegar `supabase/templates/codigo-acceso.html`.
+   Authentication → URL Configuration → Site URL: `rinfo://` (si queda `localhost:3000`, los links de mails viejos fallan).
 5. Authentication → Providers → Email: dejarlo activo. El correo de prueba de Supabase manda pocos mails por hora:
    para muchos alumnos, configurar un SMTP propio (Resend, Brevo, etc.) en Authentication → SMTP.
 
